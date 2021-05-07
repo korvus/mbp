@@ -32,6 +32,11 @@ a {
   color: #b27c69;
 }
 
+.unexistant {
+  display: block;
+  color: #f00;
+}
+
 .modal {
   position: absolute;
   z-index: 10001;

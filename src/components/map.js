@@ -20,9 +20,17 @@ function loopOnAllMarkers(boulangeries){
     for (const [index, value] of listDate.entries()) {
         for(let a=0; a<coords[listDate[index]].length; a++){
             let idCoords = JSON.stringify(coords[listDate[index]][a].coords);
+            let valid = coords[listDate[index]][a].valid !== undefined ? coords[listDate[index]][a].valid : true;
             let titre = a === 0 ? [`Meilleurs baguette ${value}`] : [`Finaliste année ${value}`];
             if(!boulangeries.hasOwnProperty(idCoords)){
-                boulangeries[idCoords] = {"popup": [titre], "rank": a, "name": coords[listDate[index]][a].name, "adresse": coords[listDate[index]][a].adresse, "coords": coords[listDate[index]][a].coords}
+                boulangeries[idCoords] = {
+                    "popup": [titre],
+                    "rank": a,
+                    "obsolete": !valid,
+                    "name": coords[listDate[index]][a].name,
+                    "adresse": coords[listDate[index]][a].adresse,
+                    "coords": coords[listDate[index]][a].coords
+                }
             } else {
                 boulangeries[idCoords].popup.push(titre);
                 if(a < boulangeries[idCoords].rank){
@@ -80,6 +88,7 @@ function constructJsx(boulangeries, map){
             icon={icone}
           >
             <Popup>
+                {boulangeries[boulangerie].obsolete === true && <strong className="unexistant">N'existe plus</strong>}
               {trophies}
               <strong>{boulangeries[boulangerie].name}</strong>
                 <address>
