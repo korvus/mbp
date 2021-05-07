@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'quicksand';
+  src: url('quicksand.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html{
+  font-size: 62.5%;
+  font-family: 'quicksand', Arial, Helvetica, sans-serif;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

@@ -1,0 +1,227 @@
+#root {
+  display: flex;
+  height: 100%;
+}
+
+.App {
+  width: calc(100% - 300px);
+  position: relative;
+}
+
+.App .about{
+  position: absolute;
+  z-index: 10000;
+  left: 1rem;
+  bottom: 1rem;
+  cursor: pointer;
+  background: #fff;
+  color: #000;
+  text-align: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  font-size: 2rem;
+  border: 2px solid #999;
+  box-shadow: 0 0 5px #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: #b27c69;
+}
+
+.modal {
+  position: absolute;
+  z-index: 10001;
+  left: 4rem;
+  top: 4rem;
+  background: #fff;
+  width: calc(100% - 10rem);
+  height: calc(100% - 10rem);
+  padding: 1rem;
+  overflow: auto;
+  box-shadow: 0 0 5px #999;
+  font-size: 1.6rem;
+}
+
+.warning {
+  position: absolute;
+  z-index: 10000;
+  left: 4rem;
+  top: 4rem;
+  background: rgba(250, 50, 50, 0.9);
+  width: calc(100% - 10rem);
+  padding: 1rem;
+  overflow: auto;
+  color: #fff;
+  box-shadow: 0 0 5px #999;
+  font-size: 1.6rem;
+}
+
+.modal .langues span{
+  cursor: pointer;
+  color: #bbb;
+  margin-right: 1rem;
+  text-decoration: underline;
+}
+
+.modal .langues span.active {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.modal .close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 3rem;
+  height: 3rem;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.modal .innerModal {
+  padding-right: 4rem;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.modal .close:before,
+.modal .close:after {
+  position: absolute;
+  left: 1.5rem;
+  content: ' ';
+  height: 3rem;
+  width: 0.3rem;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+
+.modal ul{
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.modal li{
+  list-style: none;
+  padding-right: 1rem;
+}
+
+.pannel {
+  width: 240px;
+  padding: 0 30px;
+  overflow: auto;
+}
+
+.pannel h1{
+  font-size: 1.6rem;
+  margin: 2rem 0;
+}
+
+.pannel ul {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 8rem);
+  grid-gap: 0;
+}
+
+.pannel li {
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.8rem;
+  border-bottom: 1px solid #bbb;
+  padding: 1rem 0;
+}
+
+.pannel li:hover {
+  border-bottom: 1px solid #000;
+  background: #eee;
+}
+
+
+.pannel sup.small {
+  color: #999;
+  font-size: 1.2rem;
+}
+
+.pannel sup.small:before{content:"("}
+.pannel sup.small:after{content:")"}
+
+.pannel li:first-child{
+  background-color: #E8D94D;
+}
+
+.pannel li.active {
+  font-weight: bold;
+}
+
+.leaflet-container{
+  height: 100%;
+}
+
+.leaflet-div-icon {
+  border: none;
+  background-color: transparent;
+}
+
+.leaflet-popup-content {
+  margin: 30px 19px 13px;
+  font-size: 1.4rem;
+}
+
+.leaflet-popup-content span {
+  display: block;
+  border-bottom: 1px solid #999;
+  margin-bottom: 1rem;
+  color: #999;
+}
+
+.leaflet-popup-content strong {
+  font-size: 1.5rem;
+}
+
+.leaflet-popup-content address a{
+  color: #b27c69;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@media screen and (orientation: portrait) {
+  #root{height: 100%;flex-direction: column-reverse;}
+  #root .pannel {width: 100%;box-sizing: border-box;}
+  #root .pannel ul{ grid-template-columns: repeat(6, 1fr); }
+  .pannel li{border-bottom: none;border-top: 1px solid #bbb;}
+  #root .pannel ul li sup{display: none;}
+  .App {width: 100%;height: 100%}
+}
+

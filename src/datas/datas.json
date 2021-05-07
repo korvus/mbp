@@ -1,0 +1,192 @@
+{
+    "1994": [
+      {"name": "René Saint-Ouen", "adresse": "111 boulevard Haussmann 75008", "coords": [48.875060, 2.316310]}
+    ],
+    "1995": [
+        {"name": "Maison Julien", "adresse": "75 rue Saint-Honoré 75001", "coords": [48.861120, 2.344120]}
+    ],
+    "1996": [
+        {"name":"Philippe Gosselin", "adresse": "123-125 rue Saint-Honoré, 75001", "coords": [48.861502,2.34163]}
+    ],
+    "1997": [
+        {"name": "René Saint-Ouen", "adresse": "111 boulevard Haussmann 75008", "coords": [48.875060, 2.316310]}
+    ],
+    "1998": [
+        {"name": "Aux Délices du Palais", "adresse": "60 boulevard Brune 75014", "coords": [48.825839, 2.312687]}
+    ],
+    "1999": [
+        {"name": "Stéphane Pouget", "adresse": "104 rue Bobillot 75013", "coords": [48.822685, 2.347014]}
+    ],
+    "2000": [
+        {"name": "Raoul Maeder", "adresse": "158 boulevard Berthier 75017", "coords": [48.886780, 2.296109]}
+    ],
+    "2001": [
+        {"name": "Au 140", "adresse": "140 rue de Belleville 75020", "coords": [48.875273, 2.389834]}
+    ],
+    "2002": [
+        {"name": "Raoul Maeder", "adresse": "158 boulevard Berthier 75017", "coords": [48.886780, 2.296109]}
+    ],
+    "2003": [
+        {"name": "Laurent Connan", "adresse": "38 rue des Batignolles 75017", "coords": [48.885556, 2.320049]}
+    ],
+    "2004": [
+        {"name": "La fournée d’Augustine", "adresse": "96 rue Raymond-Losserand 75014", "coords": [48.832910, 2.315964]}
+    ],
+    "2005": [
+        {"name": "Eric Sanna", "adresse": "3 rue du Retrait 75020", "coords": [48.867724, 2.395963]}
+    ],
+    "2006": [
+        {"name": "Jean-Pierre Cohier", "adresse": "270 rue du Faubourg Saint-Honoré 75008", "coords": [48.877718, 2.299016]}
+    ],
+    "2007": [
+        {"name": "Arnaud Delmontel", "adresse": "57 rue Damrémont 75018", "coords": [48.891014, 2.334464]}
+    ],
+    "2008": [
+        {"name": "Au Duc de la Chapelle", "adresse": "32-34 rue Tristan-Tzara 75018", "coords": [43.223918, 0.082096]}
+    ],
+    "2009": [
+        {"name": "Le Grenier de Félix", "adresse": "64 avenue Félix-Faure 75015", "coords": [48.840418, 2.285920]}
+    ],
+    "2010": [
+        {"name": "Le Grenier à pain", "adresse": "38 rue des Abbesses 75018", "coords": [48.885289, 2.336666]},
+        {"name": "La Parisienne", "adresse": "28 rue Monge 75005", "coords": [48.846702, 2.351387]},
+        {"name": "Dominique Saibron", "adresse": "77 Avenue du Général Leclerc, 75014", "coords": [48.827976, 2.327341]},
+        {"name": "Yves Desgranges", "adresse": "6 Rue de Passy, 75016", "coords": [48.858536, 2.283823]},
+        {"name": "Philippe Gosselin", "adresse": "258 Boulevard Saint-Germain 75007", "coords": [48.858825, 2.323143]},
+        {"name": "Xavier Doué", "adresse": "163 avenue de versaillais, 75016", "coords": [48.841225, 2.266332]},
+        {"name": "Boulangerie Lohézic", "adresse": "31, rue Guersant, 75017", "coords": [48.881565, 2.288912]},
+        {"name": "Boulangerie d’Isa", "adresse": "127 Rue de Charenton 75012", "coords": [48.845585, 2.380593]},
+        {"name": "Mohamed Zerzour", "adresse": "50 rue de l’Amiral Roussin 75015", "coords": [48.843284, 2.299880]},
+        {"name": "SARL Zerzour II", "adresse": "324, rue Lecourbe, 75014", "coords": [48.837505, 2.285122]}
+    ],
+    "2011": [
+        {"name": "Au Levain d'Antan", "adresse": "6 rue des Abbesses 75018", "coords": [48.884026, 2.339102]},
+        {"name": "Gaétan Romp", "adresse": "14 rue de la Michodière, 75002", "coords": [48.870089, 2.334942]}, 
+        {"name": "Les Saveurs du 20ème", "adresse": "120 rue de Bagnolet, 75020", "coords": [48.860040, 2.404018]},
+        {"name": "Gontran Cherrier", "adresse": "22 rue Caulaincourt, 75018", "coords": [48.887289, 2.333367]},
+        {"name": "Le Fournil du Village", "adresse": "12 place J.B. Clément, 75018", "coords": [48.886911, 2.339478]},
+        {"name": "Les Gourmandises d’Eiffel", "adresse": "187 rue de Grenelle, 75007", "coords": [48.856727, 2.303727]},
+        {"name": "Julien", "adresse": "75 rue Saint-Honoré, 75001", "coords": [48.861118, 2.344125]},
+        {"name": "Philippe Marache", "adresse": "92 avenue de la République, 75011", "coords": [48.863750, 2.381576]},
+        {"name": "Bogner-savary", "adresse": "204 rue des Pyrénées, 75020", "coords": [48.864546, 2.398926]},
+        {"name": "Le Grenier à Pain Saint-Amand", "adresse": "33 bis rue Saint-Amand, 75015", "coords": [48.834098, 2.308936]}
+    ],
+    "2012": [
+        {"name": "Sébastien Mauvieux", "adresse": "159 rue Ordener 75018", "coords": [48.893318, 2.337909]},
+        {"name": "Raoul Maeder", "adresse": "158 boulevard Berthier 75017", "coords": [48.886780, 2.296109]},
+        {"name": "boulangerie AUDOU", "adresse": "10 rue de Chanzy – 75011", "coords": [48.852430, 2.382964]},
+        {"name": "Dominique ANRACT", "adresse": "110 rue de la Tour – 75116", "coords": [48.862759, 2.276550]},
+        {"name": "Arnaud DELMONTEL", "adresse": "39 rue des Martyrs – 75009", "coords": [48.879559, 2.339955]},
+        {"name": "la Petite Marquise", "adresse": "3 place Victor Hugo – 75116", "coords": [48.869454, 2.285955]},
+        {"name": "Guillaume DELCOURT", "adresse": "100 rue Boileau – 75016", "coords": [48.839696, 2.261537]},
+        {"name": "Eran MAYER", "adresse": "100 rue du Théâtre – 75015", "coords": [48.846593, 2.293927]},
+        {"name": "Benjamin TURQUIER", "adresse": "134 rue de Turenne – 75003", "coords": [48.864660, 2.364911]},
+        {"name": "les Saveurs de Wagram", "adresse": "169 avenue de Wagram – 75017", "coords": [48.886655, 2.304166]}
+    ],
+    "2013": [
+        {"name": "Au Paradis Gourmand", "adresse": "156 rue Raymond-Losserand 75014", "coords": [48.830545, 2.311268]},
+        {"name": "Boulangerie Raphaëlle", "adresse": "1, rue Feutrier 75018", "coords": [48.885865, 2.346389]},
+        {"name": "Boulangerie Damiani", "adresse": "125, avenue du Clichy 75017", "coords": [48.890099, 2.320781]},
+        {"name": "Christian Vabret", "adresse": "27, rue Francois Miron 75004", "coords": [48.855629, 2.357612]},
+        {"name": "Maison Cailleaud", "adresse": "104, cours de Vincennes 75012", "coords": [48.846859, 2.408830]},
+        {"name": "Maison Landemaine", "adresse": "56, rue du Clichy 75009", "coords": [48.880871, 2.328849]},
+        {"name": "Dominique Saibron", "adresse": "77, avenue du Géneral Leclerc 75014", "coords": [48.827976, 2.327341]},
+        {"name": "Le Grenier à Pain Lafayette", "adresse": "91, rue Faubourg Poissonnière 75009", "coords": [48.876914, 2.348715]},
+        {"name": "La Parisienne", "adresse": "12, rue Coustou 75018", "coords": [48.884594, 2.333721]},
+        {"name": "Claude Besnier", "adresse": "40 rue du Bourgogne 75007", "coords": [48.857212, 2.317315]},
+        {"name": "Samir Ben Habhab", "adresse": "55 boulevard Gouvion Saint Cyr 75017", "coords": [48.881546, 2.285997]},
+        {"name": "Nicolas Marnay", "adresse": "24, rue Saint-Martin 75004", "coords": [48.858719, 2.350275]}
+
+    ],
+    "2014": [
+        {"name": "Aux Délices du Palais", "adresse": "60 boulevard Brune 75014", "coords": [48.825839, 2.312687]},
+        {"name": "Au petit Versaillais du Marais", "adresse": "27 rue François Miron – 75004", "coords": [48.855629, 2.357612]},
+        {"name": "M. Ali BEN BHADUER", "adresse": "43 rue de Clignancourt – 75018", "coords": [48.886427, 2.347449]},
+        {"name": "Benjamin TURQUIER", "adresse": "134 rue de Turenne – 75003", "coords": [48.864660, 2.364911]},
+        {"name": "Naceur BEN HABHAB", "adresse": "83 rue Danrémont – 75018", "coords": [48.893453, 2.336121]},
+        {"name": "Maison DELCOURT", "adresse": "100 rue Boileau – 75018", "coords": [48.839696, 2.261537]},
+        {"name":"Philippe Gosselin", "adresse": "123-125 rue Saint-Honoré, 75001", "coords": [48.861502,2.34163]},
+        {"name": "les Artisans du Pain", "adresse": "81 rue Didot – 75014", "coords": [48.829413, 2.317722]},
+        {"name": "M. Grégory ZORE", "adresse": "76 rue de Seine – 75006", "coords": [48.851927, 2.336919]},
+        {"name": "M. Dominique SAIBRON", "adresse": "77 avenue du Général Leclerc – 75014", "coords": [48.827976, 2.327341]},
+        {"name": "M. Benoît CASTEL", "adresse": "39 rue des Vinaigriers – 75010", "coords": [48.873110, 2.361628]},
+        {"name": "M Narcisse PASQUIER", "adresse": "3 place Victor Hugo – 75016", "coords": [48.869454, 2.285955]},
+        {"name": "M. Patrick HARDEL", "adresse": "31 rue des Acacias – 75017", "coords": [48.877254, 2.292286]},
+        {"name": "M. Hamid MEKSEM", "adresse": "27 rue Campo Formio – 75013", "coords": [48.835030, 2.359110]},
+        {"name": "Le Pétrin Normand", "adresse": "152 rue de la Convention – 75015", "coords": [48.839125, 2.291989]}
+    ],
+    "2015": [
+        {"name": "Le Grenier à pain", "adresse": "38 rue des Abbesses 75018", "coords": [48.885289, 2.336666]},
+        {"name": "Boulangerie Brun", "adresse": "193 rue de Tolbiac – 75013 Paris", "coords": [48.825738, 2.350807]},
+        {"name": "HURE", "adresse": "150, avenue Victor Hugo 75016", "coords": [48.866775, 2.278044]},
+        {"name": "L’Académie du Pain", "adresse": "30 rue d’Alésia – 75014", "coords": [48.827920, 2.330392]},
+        {"name": "Le Puits d’Amour", "adresse": "249, Boulevard Voltaire 75011", "coords": [48.850596, 2.392533]},
+        {"name": "Monsieur Régis CHEVANT", "adresse": "152 avenue de Versailles 75016", "coords": [48.841063, 2.265297]},
+        {"name": "Monsieur Charles-Didier TCHOUASSI", "adresse": "63, rue de Turbigo 75003", "coords": [48.865873, 2.357429]},
+        {"name": "Jean-José PHILIPPE", "adresse": "25, avenue de Saint-Ouen 75017", "coords": [48.889192, 2.325975]},
+        {"name": "Les Gourmandises d'Eiffel", "adresse": "187, rue de Grenelle 75007", "coords": [48.856727, 2.303727]},
+        {"name": "Douceurs et Traditions", "adresse": "85, rue Saint-Dominique 75007", "coords": [48.859644, 2.308006]},
+        {"name": "Maison DELCOURT", "adresse": "100 rue Boileau – 75018", "coords": [48.839696, 2.261537]}
+    ],
+    "2016": [
+        {"name": "La Parisienne", "adresse": "48 rue Madame 75006", "coords": [48.848205, 2.331500]},
+        {"name": "Boulangerie de Lourmel", "adresse": "121 avenue Felix Faure - 75015", "coords": [48.838107, 2.281248]},
+        {"name": "Le Grenier à Pain", "adresse": "33 bis rue Saint Amand – 75015", "coords": [48.834098, 2.308936]},
+        {"name": "Boulangerie Alexine", "adresse": "40 rue Lepic – 75018", "coords": [48.886047, 2.334610]},
+        {"name": "Boulangerie L’Essentiel Blanqui", "adresse": "73 boulevard Auguste Blanqui – 75013", "coords": [48.829556, 2.347975]},
+        {"name": "Douceurs et Traditions", "adresse": "85 rue Saint Dominique – 75007", "coords": [48.859644, 2.308006]},
+        {"name": "La Flûte Enchantée", "adresse": "104 rue du Faubourg Saint Antoine – 75012", "coords": [48.850997, 2.376759]},
+        {"name": "Boulangerie Brun", "adresse": "193 rue de Tolbiac – 75013 Paris", "coords": [48.825738, 2.350807]},
+        {"name": "Le Grenier à Pain", "adresse": "52 avenue d’Italie – 75013", "coords": [48.827723, 2.356502]},
+        {"name": "L’Académie du Pain", "adresse": "30 rue d’Alésia – 75014", "coords": [48.827920, 2.330392]}
+    ],
+    "2017": [
+        {"name": "Boulangerie Brun", "adresse": "193 rue de Tolbiac 75013", "coords": [48.825738, 2.350807]},
+        {"name": "Aux Délices de Glacière", "adresse": "90, bld Auguste Blanqui 75013", "coords": [48.830955, 2.345451]},
+        {"name": "Boulangerie Dupain", "adresse": "20, Bld des Filles du Calvaire 75011", "coords": [48.861958, 2.367355]},
+        {"name": "Sarl Gontran Cherrier", "adresse": "22, rue de Caulaincourt 75018", "coords": [48.887289, 2.333367]},
+        {"name": "Boulangerie Bichon", "adresse": "2, rue Cail 75010", "coords": [48.882766, 2.361471]},
+        {"name": "Les Gourmandises d’Eiffel", "adresse": "187, rue de Grenelle 75007", "coords": [48.856727, 2.303727]},
+        {"name": "sarl 2M", "adresse": "215 bld Raspail 75014", "coords": [48.840604, 2.330483]},
+        {"name": "Le Grenier à Pain", "adresse": "52 avenue d’Italie 75013", "coords": [48.827723, 2.356502]},
+        {"name": "Boulangerie Tembely", "adresse": "33 rue Myrha 75018", "coords": [48.887032, 2.353618]},
+        {"name": "Maison Hubert Trévisse", "adresse": "6 rue de Trévise 75009", "coords": [48.872893, 2.345226]}
+
+    ],
+    "2018": [
+        {"name": "Boulangerie 2M", "adresse": "215 boulevard Raspail 75014", "coords": [48.840604, 2.330483]},
+        {"name": "Le Grenier à Pain St Amand", "adresse": "33bis, rue Saint Amand 75015", "coords": [48.834098, 2.308936]},
+        {"name": "Le Puits d’Amour", "adresse": "249, Boulevard Voltaire 75011", "coords": [48.850596, 2.392533]},
+        {"name": "Au Levain des Pyrénées", "adresse": "44, rue des Pyrénées 75020", "coords": [48.851414, 2.406434]},
+        {"name": "Landemaine Martyrs", "adresse": "26, rue des Martyrs 75009", "coords": [48.878316, 2.339751]},
+        {"name": "Maison Hubert Rambuteau", "adresse": "62, rue Rambuteau 75003", "coords": [48.861831, 2.351149]},
+        {"name": "Maison Decorde", "adresse": "29, rue Gay-Lussac 75005", "coords": [48.844213, 2.342243]},
+        {"name": "Delmontel", "adresse": "25, rue de Levis 75017", "coords": [48.882319, 2.315243]},
+        {"name": "Au Duc de la Chapelle", "adresse": "32, rue Tristan TZARA 75018", "coords": [43.230482, 0.090722]},
+        {"name": "Boulangerie Thierry Meunier", "adresse": "15, rue de Belleville 75019", "coords": [48.872572, 2.378160]}
+    ],
+    "2019": [
+        {"name": "Boulangerie Leroy Monti", "adresse": "203 avenue Daumesnil 75012", "coords": [48.839090, 2.397672]},
+        {"name": "Aux Deux Anges", "adresse": "23, rue Daval 75011", "coords": [48.854574, 2.371329]},
+        {"name": "Paris & Co Écoles", "adresse": "4 bis, rue des Écoles 75005", "coords": [48.847848, 2.351960]},
+        {"name": "Le Délice de Bagnolet", "adresse": "42, Boulevard Mortier 75020", "coords": [48.867755, 2.409238]},
+        {"name": "Tout Autour de Paris", "adresse": "134, rue de Turenne 75003", "coords": [48.864660, 2.364911]},
+        {"name": "Faubourg St-Charles", "adresse": "134 rue St Charles 75015", "coords": [48.843672, 2.282788]},
+        {"name": "Boulangerie Line", "adresse": "235, rue de Bercy 75012", "coords": [48.846897, 2.369187]},
+        {"name": "Alexine", "adresse": "109, Avenue de St Ouen 75017", "coords": [48.894554, 2.327777]},
+        {"name": "Maison Lardeux", "adresse": "63, rue de Caulaincourt 75018", "coords": [48.889707, 2.335596]},
+        {"name": "Boulangerie Comyn", "adresse": "8 avenue Felix Faure 75015", "coords": [48.842543, 2.291142]}
+    ],
+    "2020": [
+        {"name": "Les saveurs de Pierre Demours", "adresse": "13 rue Pierre Demours 75017", "coords": [48.880548, 2.292820]},
+        {"name": "L’essentiel Mouffetard", "adresse": "2, rue Mouffetard 75005", "coords": [48.844835, 2.349051]},
+        {"name": "Farine & O", "adresse": "10, rue des Martyrs 75009", "coords": [48.877156, 2.339496]},
+        {"name": "Au 140", "adresse": "140 rue de Belleville 75020", "coords": [48.875273, 2.389834]},
+        {"name": "Aux délices du Palais", "adresse": "60, boulevard Brune 75014", "coords": [48.825839, 2.312687]},
+        {"name": "Aux délices de Glacière", "adresse": "90, bd Auguste Blanqui 75013", "coords": [48.830955, 2.345451]},
+        {"name": "Maison Legendre", "adresse": "2, rue de la Butte aux Cailles 75013", "coords": [48.828147, 2.352452]},
+        {"name": "Boulangerie Guyot", "adresse": "28 rue Monge 75005", "coords": [48.846702, 2.351387]},
+        {"name": "Giovanni boulangerie contemporaine", "adresse": "49, rue Chardon Lagache 75016", "coords": [48.843087, 2.265002]},
+        {"name": "Maison Leparq", "adresse": "6, rue de Lourmel 75015", "coords": [48.850322, 2.291963]}
+    ]
+}
