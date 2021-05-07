@@ -3,7 +3,6 @@ import boulangeries from '../datas/datas.json';
 import { PinContext, Text } from '../store';
 
 import Pavlova from "../img/pavlova.png";
-import markerBasique from "../img/markerBasique.png";
 import viennoiserie from "../img/croissant.png";
 import babka from "../img/babka.png";
 import brioche from "../img/brioche.png";
@@ -29,7 +28,6 @@ import oriental from "../img/oriental.png";
 import flan from "../img/flan.png";
 import millefeuilles from "../img/millefeuilles.png";
 import glace from "../img/glace.png";
-import autres from "../img/autres.png";
 
 const listDate = Object.keys(boulangeries);
 
