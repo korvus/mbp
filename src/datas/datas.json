@@ -61,7 +61,6 @@
     ],
     "2011": [
         {"name": "Au Levain d'Antan", "adresse": "6 rue des Abbesses 75018", "coords": [48.884026, 2.339102]},
-        {"name": "Gaétan Romp", "adresse": "14 rue de la Michodière, 75002", "coords": [48.870089, 2.334942]}, 
         {"name": "Les Saveurs du 20ème", "adresse": "120 rue de Bagnolet, 75020", "coords": [48.860040, 2.404018]},
         {"name": "Gontran Cherrier", "adresse": "22 rue Caulaincourt, 75018", "coords": [48.887289, 2.333367]},
         {"name": "Le Fournil du Village", "adresse": "12 place J.B. Clément, 75018", "coords": [48.886911, 2.339478]},
