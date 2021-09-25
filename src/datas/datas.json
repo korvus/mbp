@@ -33,7 +33,7 @@
         {"name": "La fournée d’Augustine", "adresse": "96 rue Raymond-Losserand 75014", "coords": [48.832910, 2.315964]}
     ],
     "2005": [
-        {"name": "Eric Sanna", "adresse": "3 rue du Retrait 75020", "coords": [48.867724, 2.395963]}
+        {"name": "Eric Sanna", "adresse": "3 rue du Retrait 75020", "coords": [48.867724, 2.395963], "valid": false}
     ],
     "2006": [
         {"name": "Jean-Pierre Cohier", "adresse": "270 rue du Faubourg Saint-Honoré 75008", "coords": [48.877718, 2.299016]}
@@ -188,5 +188,17 @@
         {"name": "Boulangerie Guyot", "adresse": "28 rue Monge 75005", "coords": [48.846702, 2.351387]},
         {"name": "Giovanni boulangerie contemporaine", "adresse": "49, rue Chardon Lagache 75016", "coords": [48.843087, 2.265002]},
         {"name": "Maison Leparq", "adresse": "6, rue de Lourmel 75015", "coords": [48.850322, 2.291963]}
+    ],
+    "2021": [
+        {"name": "Makram Akrout 'Les boulangers de Reuilly'", "adresse": "54 boulevard de Reuilly 75012", "coords": [48.839380, 2.397150]},
+        {"name": "H. Saidi 'Boulangerie de la place'", "adresse": "162, Boulevard Vincent Auriol 75013", "coords": [48.832180, 2.359100]},
+        {"name": "J.-P. Lardeux 'Maison Lardeux'", "adresse": "67, rue Caulaincourt 75018", "coords": [48.889620,2.336170]},
+        {"name": "F. Bleas 'Aux délices de Vaugirard'", "adresse": "48 rue Madame 75006", "coords": [48.848190,2.331550]},
+        {"name": "K. Mansour 'Aux délices de Glacière'", "adresse": "90, boulevard Auguste Blanqui 75013", "coords": [48.830950,2.345450]},
+        {"name": "F. Comyn 'Le pétrin fontains'", "adresse": "88, rue Cambronne 75015", "coords": [48.842258,2.3005601]},
+        {"name": "V. Bailleux 'Boulangerie Béchu'", "adresse": "118, avenue Victor Hugo, 75016", "coords": [48.8682458,2.279337]},
+        {"name": "A. Ounissi 'Boulangerie Bac'", "adresse": "2 rue de la butte aux cailles 75013", "coords": [48.828147, 2.352452]},
+        {"name": "H. Kim 'Boris Lumé'", "adresse": "48, rue Caulaincourt 75018", "coords": [48.888983,2.3326565]},
+        {"name": "A. Pottier 'Aux Castelblangeois'", "adresse": "168, rue St Honoré, 75001", "coords": [48.862284,2.337254]}
     ]
 }
