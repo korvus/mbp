@@ -14,7 +14,12 @@
     "sourceCodeAvailable": "Le code source est disponible",
     "ici": "ici",
     "divers": "divers",
+    "displayGold": "Afficher seulement les premiers prix",
+    "displaySilver": "Afficher seulement les seconds prix",
+    "displayThird": "Afficher les troisièmes",
+    "displayAll": "Tout afficher (defaut)",
     "introPatteFolle": "Si vous aimez faire du pain, il existe aussi cette application que j'ai ",
     "app": "développé",
+    "anymore": "N'existe plus",
     "noBakery": "Il n'y a pas de boulangeries sur cette surface. Déplacer la fenêtre ou dézoomer pour en trouver une."
 }

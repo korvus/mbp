@@ -13,6 +13,7 @@ export function getCurrentLanguage () {
 
 export const PinContextProvider = props => {
     const [pins, setPins] = useState(0);
+    const [rankselected, setRankselected] = useState(0);
     const [dm, setDm] = useState(false);
     const [warning, setWarning] = useState(false);
     const [userLanguage, setUserLanguage] = useState('fr');
@@ -20,8 +21,8 @@ export const PinContextProvider = props => {
     const provider = {
       dm,
       setDm,
-      pins,
-      setPins,
+      pins, setPins,
+      rankselected, setRankselected,
       warning,
       setWarning,
       userLanguage,
@@ -43,5 +44,11 @@ export const PinContextProvider = props => {
 export function Text({ tid }) {
   const languageContext = useContext(PinContext);
   let str = languageContext.dictionary[tid] ? languageContext.dictionary[tid] : "";
+  return str;
+};
+
+export function FuncText(tid) {
+  const lang = getCurrentLanguage();
+  let str = dictionaryList[lang][tid] ? dictionaryList[lang][tid] : "";
   return str;
 };

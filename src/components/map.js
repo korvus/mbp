@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, useMap, useMapEvent, Marker, Popup } from 'rea
 import React, { Fragment, useContext, useEffect } from 'react';
 import coords from '../datas/datas.json';
 import { IconGold, IconSilver, IconDefault } from '../components/icon.js';
-import { PinContext } from '../store';
+import { PinContext, Text } from '../store';
 import Modalcontent from './modal.js';
 import Warningcontent from './warning.js';
 
@@ -16,9 +16,23 @@ function transformForGgl(chaine) {
   return chaine;
 }
 
-function loopOnAllMarkers(boulangeries){
+function loopOnAllMarkers(boulangeries, rankasked){
+    // loop on all years
+
     for (const [index, value] of listDate.entries()) {
-        for(let a=0; a<coords[listDate[index]].length; a++){
+        let a=0;
+        let lengthToLoop = coords[listDate[index]].length;
+        if(rankasked !== 0){
+            a = rankasked-1;
+            // rankAsked var is used as a +1 value
+            if(rankasked > lengthToLoop){
+                lengthToLoop = a;
+            } else {
+                lengthToLoop = rankasked;
+            }
+        }
+        // Loop on every selected bakers by years
+        for(a; a<lengthToLoop; a++){
             let idCoords = JSON.stringify(coords[listDate[index]][a].coords);
             let valid = coords[listDate[index]][a].valid !== undefined ? coords[listDate[index]][a].valid : true;
             let titre = a === 0 ? [`Meilleurs baguette ${value}`] : [`Finaliste année ${value}`];
@@ -88,7 +102,7 @@ function constructJsx(boulangeries, map){
             icon={icone}
           >
             <Popup>
-                {boulangeries[boulangerie].obsolete === true && <strong className="unexistant">N'existe plus</strong>}
+                {boulangeries[boulangerie].obsolete === true && <strong className="unexistant"><Text tid="anymore" /></strong>}
               {trophies}
               <strong>{boulangeries[boulangerie].name}</strong>
                 <address>
@@ -115,11 +129,13 @@ function ListMarkers(props) {
 
     let boulangeries = {};
     if(props.list === 0){
-        boulangeries = loopOnAllMarkers(boulangeries);
+        boulangeries = loopOnAllMarkers(boulangeries, props.askedrank);
     } else {
         boulangeries = loopForOneMarker(boulangeries, props.list);
     }
   
+    console.log("props.list ", props.list ,"boulangeries obj is ", boulangeries);
+
     let arrBoulangeries = constructJsx(boulangeries, map);
   
     useEffect(() => {
@@ -156,7 +172,7 @@ function ListMarkers(props) {
 }
 
 const Map = () => {
-    const {pins, dm, setDm, warning, setWarning} = useContext(PinContext);
+    const {pins, dm, setDm, warning, rankselected, setWarning} = useContext(PinContext);
 
     function escFunction(event){
         if(event.keyCode === 27) {
@@ -200,7 +216,7 @@ const Map = () => {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <ListMarkers list={pins} warning={setWarning} />
+            <ListMarkers list={pins} warning={setWarning} askedrank={rankselected} />
         </MapContainer>
     </div>
     )

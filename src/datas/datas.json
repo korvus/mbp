@@ -42,7 +42,7 @@
         {"name": "Arnaud Delmontel", "adresse": "57 rue Damrémont 75018", "coords": [48.891014, 2.334464]}
     ],
     "2008": [
-        {"name": "Au Duc de la Chapelle", "adresse": "32-34 rue Tristan-Tzara 75018", "coords": [43.223918, 0.082096]}
+        {"name": "Anis Bouabsa 'Au Duc de la Chapelle'", "adresse": "32-34 rue Tristan-Tzara 75018", "coords": [48.89462,2.36544]}
     ],
     "2009": [
         {"name": "Le Grenier de Félix", "adresse": "64 avenue Félix-Faure 75015", "coords": [48.840418, 2.285920]}
@@ -191,14 +191,14 @@
     ],
     "2021": [
         {"name": "Makram Akrout 'Les boulangers de Reuilly'", "adresse": "54 boulevard de Reuilly 75012", "coords": [48.839380, 2.397150]},
-        {"name": "H. Saidi 'Boulangerie de la place'", "adresse": "162, Boulevard Vincent Auriol 75013", "coords": [48.832180, 2.359100]},
-        {"name": "J.-P. Lardeux 'Maison Lardeux'", "adresse": "67, rue Caulaincourt 75018", "coords": [48.889620,2.336170]},
-        {"name": "F. Bleas 'Aux délices de Vaugirard'", "adresse": "48 rue Madame 75006", "coords": [48.848190,2.331550]},
-        {"name": "K. Mansour 'Aux délices de Glacière'", "adresse": "90, boulevard Auguste Blanqui 75013", "coords": [48.830950,2.345450]},
-        {"name": "F. Comyn 'Le pétrin fontains'", "adresse": "88, rue Cambronne 75015", "coords": [48.842258,2.3005601]},
-        {"name": "V. Bailleux 'Boulangerie Béchu'", "adresse": "118, avenue Victor Hugo, 75016", "coords": [48.8682458,2.279337]},
-        {"name": "A. Ounissi 'Boulangerie Bac'", "adresse": "2 rue de la butte aux cailles 75013", "coords": [48.828147, 2.352452]},
-        {"name": "H. Kim 'Boris Lumé'", "adresse": "48, rue Caulaincourt 75018", "coords": [48.888983,2.3326565]},
-        {"name": "A. Pottier 'Aux Castelblangeois'", "adresse": "168, rue St Honoré, 75001", "coords": [48.862284,2.337254]}
+        {"name": "Houcine Saidi 'Boulangerie de la place'", "adresse": "162, Boulevard Vincent Auriol 75013", "coords": [48.832180, 2.359100]},
+        {"name": "Jean-Philippe Lardeux 'Maison Lardeux'", "adresse": "67, rue Caulaincourt 75018", "coords": [48.889620,2.336170]},
+        {"name": "Florian Bleas 'Aux délices de Vaugirard'", "adresse": "48 rue Madame 75006", "coords": [48.848190,2.331550]},
+        {"name": "Khemoussi Mansour 'Aux délices de Glacière'", "adresse": "90, boulevard Auguste Blanqui 75013", "coords": [48.830950,2.345450]},
+        {"name": "Frédéric Comyn 'Le pétrin fontains'", "adresse": "88, rue Cambronne 75015", "coords": [48.842258,2.3005601]},
+        {"name": "Vivien Bailleux 'Boulangerie Béchu'", "adresse": "118, avenue Victor Hugo, 75016", "coords": [48.8682458,2.279337]},
+        {"name": "Ahmed Ounissi 'Boulangerie Bac'", "adresse": "2 rue de la butte aux cailles 75013", "coords": [48.828147, 2.352452]},
+        {"name": "Hayoug Kim 'Boris Lumé'", "adresse": "48, rue Caulaincourt 75018", "coords": [48.888983,2.3326565]},
+        {"name": "Alexis Pottier 'Aux Castelblangeois'", "adresse": "168, rue St Honoré, 75001", "coords": [48.862284,2.337254]}
     ]
 }

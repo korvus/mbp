@@ -13,7 +13,12 @@
     "writeMe": "You can write me directly to ",
     "sourceCodeAvailable": "Source code is available ",
     "ici": "here",
+    "anymore": "Doesn't exist anymore",
     "divers": "Others",
+    "displayGold": "Display only the winners",
+    "displaySilver": "Display only second",
+    "displayThird": "Display only thirds",
+    "displayAll": "Display all contesters (default)",
     "introPatteFolle": "If you like baking, I also made this ",
     "app": "app",
     "noBakery": "There is no bakery in this area. drag the map or unzoom for trying to find one."
