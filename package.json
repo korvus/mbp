@@ -7,17 +7,19 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "leaflet": "^1.7.1",
+    "npm-force-resolutions": "^0.0.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-leaflet": "^3.0.5",
-    "react-scripts": "4.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "preinstall": "npx npm-force-resolutions"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +41,8 @@
   },
   "devDependencies": {
     "@types/leaflet": "^1.5.19"
+  },
+  "resolutions": {
+    "yargs-parser": "20.2.9"
   }
 }

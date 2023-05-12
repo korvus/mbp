@@ -36,7 +36,7 @@ const Col = () => {
       <h1>
         <Text tid="titre" />
       </h1>
-      <ul className={`rank ${pins != 0 ? ' inactive' : ''}`}>
+      <ul className={`rank ${pins !== 0 ? ' inactive' : ''}`}>
         <li
           onClick={() => setRankselected(0)}
           title={FuncText("displayAll")}
