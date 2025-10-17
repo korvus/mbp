@@ -1,14 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="shortcut icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/logo192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Les meilleurs baguettes de Paris"
-    />
+    <link rel="canonical" href="https://bestbaguettes.200.work/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Simone Ertel" />
+    <meta name="description" content="Carte interactive des meilleures baguettes de Paris : laureats, finalistes et adresses par annee, disponible en sept langues." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Les meilleures baguettes de Paris" />
+    <meta property="og:url" content="https://bestbaguettes.200.work/" />
+    <meta property="og:title" content="Carte des meilleures baguettes de Paris" />
+    <meta property="og:description" content="Decouvrez les boulangeries primees a Paris, laureats et finalistes du concours de la meilleure baguette, annee par annee." />
+    <meta property="og:image" content="%PUBLIC_URL%/promo.png" />
+    <meta property="og:image:alt" content="Illustration de baguette et T-shirt promotionnel" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Carte des meilleures baguettes de Paris" />
+    <meta name="twitter:description" content="Les meilleures boulangeries de Paris, laureats du concours de la baguette, sur une carte interactive." />
+    <meta name="twitter:image" content="%PUBLIC_URL%/promo.png" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -24,16 +37,42 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
     <title>Les meilleurs baguettes de Paris</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Map",
+        "name": "Carte des meilleures baguettes de Paris",
+        "description": "Carte interactive listant les boulangeries laureates et finalistes du concours de la meilleure baguette de Paris depuis 1994.",
+        "url": "https://bestbaguettes.200.work/",
+        "inLanguage": ["fr", "en", "es", "de", "sl", "it", "uk"],
+        "publisher": {
+          "@type": "Person",
+          "name": "Simone Ertel",
+          "email": "ecrivez.moi@simonertel.net"
+        },
+        "hasMap": "https://bestbaguettes.200.work/",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://bestbaguettes.200.work/promo.png",
+          "description": "Illustration promotionnelle des T-shirts baguette"
+        }
+      }
+    </script>
   </head>
   <body>
-    <noscript>Javascript est nécessaire.</noscript>
+    <noscript>JavaScript est necessaire pour afficher la carte des boulangeries.</noscript>
     <div id="root"></div>
     <!--
       This HTML file is a template.

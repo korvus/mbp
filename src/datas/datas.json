@@ -1372,5 +1372,169 @@
                 2.409200
             ]
         }
+    ],
+    "2024": [
+        {
+            "name": "Boulangerie Utopie",
+            "adresse": "20, rue Jean-Pierre Timbaud 75011",
+            "coords": [
+                48.86536484993775,
+                2.368692250515925
+            ]
+        },
+        {
+            "name": "Maison Doré",
+            "adresse": "29, rue Gay-Lussac 75005",
+            "coords": [
+                48.84436137585842,
+                2.3422135566182924
+            ]
+        },
+        {
+            "name": "La Parisienne",
+            "adresse": "85, rue Saint-Dominique 75007",
+            "coords": [
+                48.85988274933732,
+                2.3080059465369738
+            ]
+        },
+        {
+            "name": "Boulangerie Rougès",
+            "adresse": "45, avenue de Saint-Ouen 75017",
+            "coords": [
+                48.892630038261466,
+                2.3263101536122495
+            ]
+        },
+        {
+            "name": "L’Écrin gourmand",
+            "adresse": "15, avenue du Docteur-Arnold-Netter 75012",
+            "coords": [
+                48.84224940215501,
+                2.4047118817068585
+            ]
+        },
+        {
+            "name": "Boulangerie AA",
+            "adresse": "63, rue du Javelot 75013",
+            "coords": [
+                48.82604466406826,
+                2.3648684123911714
+            ]
+        },
+        {
+            "name": "Boulangerie Paris and Co",
+            "adresse": "4, rue de la Convention 75015",
+            "coords": [
+                48.845488800872054,
+                2.27811332403573
+            ]
+        },
+        {
+            "name": "Maison M",
+            "adresse": "2, avenue de la Porte-Didot 75014",
+            "coords": [
+                48.82639597316364,
+                2.310425068212905
+            ]
+        },
+        {
+            "name": "Aux Délices de Vaugirard",
+            "adresse": "48, rue Madame 75006",
+            "coords": [
+                48.84839707526715,
+                2.3314337105428433
+            ]
+        },
+        {
+            "name": "Du Pain et Vous",
+            "adresse": "63, avenue Bosquet 75007",
+            "coords": [
+                48.85638168332485,
+                2.3050565682145945
+            ]
+        }
+    ],
+    "2025": [
+        {
+            "name": "La Parisienne",
+            "adresse": "12, rue du Faubourg-Poissonnière 75010",
+            "coords": [
+                48.87173550858495,
+                2.348356854722454
+            ]
+        },
+        {
+            "name": "Aux Délices du Palais",
+            "adresse": "60, boulevard Brune 75014",
+            "coords": [
+                48.82596277432368,
+                2.3127949258841722
+            ]
+        },
+        {
+            "name": "Boulangerie Guyot Ferreira",
+            "adresse": "28, rue Monge 75005",
+            "coords": [
+                48.846759356244235,
+                2.3513765970497165
+            ]
+        },
+        {
+            "name": "Aux Délices de Glacière",
+            "adresse": "90, boulevard Auguste-Blanqui 75013",
+            "coords": [
+                48.83108789799039,
+                2.3454800258844797
+            ]
+        },
+        {
+            "name": "La Petite Alsacienne",
+            "adresse": "45, rue Raymond-Losserand 75014",
+            "coords": [
+                48.83514242566714,
+                2.3203078258847056
+            ]
+        },
+        {
+            "name": "Graine",
+            "adresse": "74, avenue Gambetta 75020",
+            "coords": [
+                48.86905631696113,
+                2.4020826970509557
+            ]
+        },
+        {
+            "name": "Le Marquis de Saint-Cyr",
+            "adresse": "20, boulevard Gouvion-Saint-Cyr 75017",
+            "coords": [
+                48.88419068369312,
+                2.2886499817092036
+            ]
+        },
+        {
+            "name": "Le Délice de Bagnolet",
+            "adresse": "42, boulevard Mortier 75020",
+            "coords": [
+                48.867366748428495,
+                2.409224697050864
+            ]
+        },
+        {
+            "name": "Le Moulin de la Croix-Nivert",
+            "adresse": "39, rue de la Croix-Nivert 75015",
+            "coords": [
+                48.846057839012154,
+                2.2989590970496714
+            ]
+        },
+        {
+            "name": "Alexine",
+            "adresse": "109, avenue de Saint-Ouen 75017",
+            "coords": [
+                48.89469837561706,
+                2.327615795202869
+            ]
+        }
     ]
 }

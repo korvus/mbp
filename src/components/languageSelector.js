@@ -1,25 +1,27 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { languageOptions } from '../datas/languages';
-import { PinContext, getCurrentLanguage } from '../store.js';
+import { PinContext } from '../store.js';
 
 export default function LanguageSelector() {
   const { userLanguage, userLanguageChange } = useContext(PinContext);
 
-  // set selected language by calling context method
-  const handleLanguageChange = e => {
-    userLanguageChange(e.target.getAttribute("value"))
+  const handleLanguageChange = (selected) => {
+    if (selected && selected !== userLanguage) {
+      userLanguageChange(selected);
+    }
   };
-
-  useEffect(() => {
-    const defaultLanguage = getCurrentLanguage()
-    userLanguageChange(defaultLanguage);
-  }, [userLanguageChange]);
 
   return (
     <div className='langues'>
-      {Object.entries(languageOptions).map(([id, name]) => (
-        <span className={`${userLanguage === id ? "active" : ""}`} onClick={e => handleLanguageChange(e)} key={id} value={id}>{name}</span>
+      {Object.entries(languageOptions).map(([id, label]) => (
+        <span
+          key={id}
+          className={userLanguage === id ? 'active' : ''}
+          onClick={() => handleLanguageChange(id)}
+        >
+          {label}
+        </span>
       ))}
     </div>
   );

@@ -16,7 +16,10 @@ export const PinContextProvider = props => {
     const [rankselected, setRankselected] = useState(0);
     const [dm, setDm] = useState(false);
     const [warning, setWarning] = useState(false);
-    const [userLanguage, setUserLanguage] = useState('fr');
+    const [userLanguage, setUserLanguage] = useState(() => {
+        const defaultLanguage = getCurrentLanguage();
+        return languageOptions[defaultLanguage] ? defaultLanguage : 'fr';
+    });
 
     const provider = {
       dm,
@@ -49,6 +52,6 @@ export function Text({ tid }) {
 
 export function FuncText(tid) {
   const lang = getCurrentLanguage();
-  let str = dictionaryList[lang][tid] ? dictionaryList[lang][tid] : "";
-  return str;
+  const dictionary = dictionaryList[lang] || dictionaryList.fr;
+  return dictionary && dictionary[tid] ? dictionary[tid] : "";
 };

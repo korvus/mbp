@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import sources from '../datas/roots.json';
-import LanguageSelector from './languageSelector';
 import { PinContext, Text } from '../store';
 
 function ListSources(){
@@ -18,7 +17,6 @@ const Modalcontent = () => {
     return (
         <div className="innerModal">
             <div title="Echap" onClick={() => setDm(false)} className="close"></div>
-            <LanguageSelector />
             <h2><Text tid="About" /></h2>
             <p>
                 <Text tid="goalContent" />

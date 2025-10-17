@@ -1,6 +1,8 @@
 import React, { Fragment, useContext } from "react";
 import boulangeries from "../datas/datas.json";
 import { PinContext, Text, FuncText } from "../store";
+import LanguageSelector from './languageSelector';
+import promoImg from "../img/promo.png";
 
 const listDate = Object.keys(boulangeries);
 
@@ -18,7 +20,7 @@ const ListByYears = (props) => {
         {value}
         <sup
           className={"small"}
-          title={"Nombre de boulangeries référencées dans le palmarés"}
+          title={"Nombre de boulangeries referencees dans le palmares"}
         >
           {boulangeries[listDate[index]].length}
         </sup>
@@ -28,11 +30,34 @@ const ListByYears = (props) => {
   return <Fragment>{years}</Fragment>;
 };
 
+const AdBanner = () => (
+  <div className="ad-banner">
+    <div className="ad-banner__content">
+      <strong><Text tid="adHeadline" /></strong>
+      <p className="ad-banner__tagline"><Text tid="adTagline" /></p>
+      <a
+        className="ad-banner__cta"
+        href="https://simon.gallery/shop/T/venus-is-full-of-sweet/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <Text tid="adCta" />
+      </a>
+    </div>
+    <img
+      className="ad-banner__image"
+      src={promoImg}
+      alt="Illustration promotion T-shirt baguette"
+    />
+  </div>
+);
+
 const Col = () => {
   const { pins, rankselected, setPins, setRankselected } = useContext(PinContext);
 
   return (
     <div className="pannel">
+      <LanguageSelector />
       <h1>
         <Text tid="titre" />
       </h1>
@@ -57,7 +82,6 @@ const Col = () => {
           title={FuncText("displayThird")}
           className={`bronze ${rankselected === 3 ? 'active' : ''}`}
         ></li>
-
       </ul>
       <ul className="years">
         <li className={pins === 0 ? "active" : ""} onClick={() => setPins(0)}>
@@ -65,6 +89,7 @@ const Col = () => {
         </li>
         <ListByYears actions={[pins, setPins]} />
       </ul>
+      <AdBanner />
     </div>
   );
 };
