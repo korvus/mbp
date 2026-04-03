@@ -16,6 +16,14 @@ export const PinContextProvider = props => {
     const [rankselected, setRankselected] = useState(0);
     const [dm, setDm] = useState(false);
     const [warning, setWarning] = useState(false);
+    const [routing, setRouting] = useState({
+        loading: false,
+        error: "",
+        tooFar: false,
+        route: null,
+        destination: null,
+        userPosition: null
+    });
     const [userLanguage, setUserLanguage] = useState(() => {
         const defaultLanguage = getCurrentLanguage();
         return languageOptions[defaultLanguage] ? defaultLanguage : 'fr';
@@ -28,6 +36,8 @@ export const PinContextProvider = props => {
       rankselected, setRankselected,
       warning,
       setWarning,
+      routing,
+      setRouting,
       userLanguage,
       dictionary: dictionaryList[userLanguage],
       userLanguageChange: selected => {

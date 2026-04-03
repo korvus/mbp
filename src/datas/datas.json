@@ -142,7 +142,7 @@
     ],
     "2008": [
         {
-            "name": "Anis Bouabsa 'Au Duc de la Chapelle'",
+            "name": "Au Duc de la Chapelle",
             "adresse": "32-34 rue Tristan-Tzara 75018",
             "coords": [
                 48.89462,
@@ -950,8 +950,8 @@
             "name": "Au Duc de la Chapelle",
             "adresse": "32, rue Tristan TZARA 75018",
             "coords": [
-                43.230482,
-                0.090722
+                48.89462,
+                2.36544
             ]
         },
         {

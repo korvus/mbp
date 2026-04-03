@@ -44,7 +44,7 @@ const Modalcontent = () => {
             </p>
             <h2><Text tid="divers" /></h2>
             <p>
-                <Text tid="" /> <a target="blank" rel="noreferrer" href="https://patefolle.vercel.app/"><Text tid="app" /></a>.
+                <a target="blank" rel="noreferrer" href="https://patefolle.200.work/"><Text tid="breadTool" /></a>
             </p>
         </div>
     );

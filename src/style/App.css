@@ -28,6 +28,65 @@
   justify-content: center;
 }
 
+.walk-routing {
+  position: absolute;
+  z-index: 10000;
+  right: 1rem;
+  top: 0rem;
+  width: min(32rem, calc(100% - 2rem));
+  text-align: right;
+}
+
+.walk-routing__button,
+.walk-routing__clear {
+  appearance: none;
+  border: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: #b27c69;
+  color: #fff;
+  padding: 1rem 1.4rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.walk-routing__clear {
+  border-radius: 100px;
+}
+
+.walk-routing__button[disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.walk-routing__panel {
+  margin-top: 0.8rem;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 14px;
+  padding: 1.2rem 1.4rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+  font-size: 1.35rem;
+  line-height: 1.5;
+}
+
+.walk-routing__panel strong,
+.walk-routing__panel p {
+  display: block;
+  margin: 0 0 0.5rem;
+}
+
+.walk-routing__panel a {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.walk-routing__clear {
+  margin-top: 0.8rem;
+  background: #6f6f6f;
+  box-shadow: none;
+}
+
 a {
   color: #b27c69;
 }
@@ -352,6 +411,10 @@ a {
   .App {
     width: 100%;
     height: 100%
+  }
+
+  .walk-routing {
+    width: calc(100% - 2rem);
   }
 }
 
