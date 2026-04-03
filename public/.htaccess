@@ -1,0 +1,9 @@
+Options -MultiViews
+RewriteEngine On
+
+RewriteRule ^si/?$ /sl [R=301,L]
+RewriteRule ^si/(.*)$ /sl/$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [QSA,L]

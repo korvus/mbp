@@ -141,6 +141,14 @@ function formatDuration(duration) {
     return `${hours} h ${minutes.toString().padStart(2, '0')}`;
 }
 
+function buildClosedBakeryReference(bakery) {
+    if (!bakery) {
+        return '';
+    }
+
+    return `${bakery.name}\n${bakery.adresse}\n${bakery.popup.join('\n')}`;
+}
+
 async function getWalkingRoute(userPosition, bakery) {
     const [userLat, userLng] = userPosition;
     const [bakeryLat, bakeryLng] = bakery.coords;
@@ -174,7 +182,7 @@ async function getWalkingRoute(userPosition, bakery) {
     };
 }
 
-function constructJsx(bakeries, map) {
+function constructJsx(bakeries, map, openClosedBakeryReport) {
     const jsxElements = [];
     let shouldBeOneAtLeast = 0;
     let index = 0;
@@ -201,6 +209,7 @@ function constructJsx(bakeries, map) {
                 key={index}
                 position={bakery.coords}
                 icon={icon}
+                opacity={bakery.obsolete === true ? 0.5 : 1}
             >
                 <Popup>
                     {bakery.obsolete === true && <strong className="unexistant"><Text tid="anymore" /></strong>}
@@ -214,6 +223,15 @@ function constructJsx(bakeries, map) {
                             {bakery.adresse}
                         </a>
                     </address>
+                    {bakery.obsolete !== true && (
+                        <button
+                            className="popup-link-button"
+                            onClick={() => openClosedBakeryReport(bakery)}
+                            type="button"
+                        >
+                            <Text tid="closedBakeryReportLink" />
+                        </button>
+                    )}
                 </Popup>
             </Marker>
         );
@@ -244,19 +262,19 @@ function ListMarkers(props) {
     const map = useMap();
     const setWarn = props.warning;
     const bakeries = getBakeriesForSelection(props.list, props.askedrank, props.dictionary, true);
-    const bakeriesWithMapState = constructJsx(bakeries, map);
+    const bakeriesWithMapState = constructJsx(bakeries, map, props.openClosedBakeryReport);
 
     useEffect(() => {
         setWarn(bakeriesWithMapState[1] === 0);
     });
 
     useMapEvent('drag', () => {
-        const updated = constructJsx(bakeries, map);
+        const updated = constructJsx(bakeries, map, props.openClosedBakeryReport);
         props.warning(updated[1] === 0);
     });
 
     useMapEvent('zoomend', () => {
-        const updated = constructJsx(bakeries, map);
+        const updated = constructJsx(bakeries, map, props.openClosedBakeryReport);
         props.warning(updated[1] === 0);
     });
 
@@ -268,7 +286,7 @@ function ListMarkers(props) {
 }
 
 const Map = () => {
-    const { pins, dm, setDm, warning, rankselected, setWarning, routing, setRouting, dictionary } = useContext(PinContext);
+    const { pins, dm, setDm, warning, rankselected, setWarning, routing, setRouting, dictionary, closedBakeryReport, setClosedBakeryReport } = useContext(PinContext);
 
     const routePoints = routing.route
         ? routing.route.geometry.coordinates.map(([lng, lat]) => [lat, lng])
@@ -283,6 +301,14 @@ const Map = () => {
             destination: null,
             userPosition: null
         });
+    }
+
+    function openClosedBakeryReport(bakery) {
+        setClosedBakeryReport(bakery);
+    }
+
+    function closeClosedBakeryReport() {
+        setClosedBakeryReport(null);
     }
 
     async function handleWalkRoute() {
@@ -392,6 +418,9 @@ const Map = () => {
                 setDm(false);
                 setWarning(false);
             }
+            if (closedBakeryReport) {
+                closeClosedBakeryReport();
+            }
         }
     }
 
@@ -428,6 +457,21 @@ const Map = () => {
                         <div title="Fermer" onClick={clearWalkRoute} className="close"></div>
                         <h2><Text tid="walkRouteSummary" /></h2>
                         <p><Text tid="walkRouteTooFar" /></p>
+                    </div>
+                </div>
+            }
+            {closedBakeryReport &&
+                <div className={"modal"}>
+                    <div className="innerModal">
+                        <div title="Fermer" onClick={closeClosedBakeryReport} className="close"></div>
+                        <h2><Text tid="closedBakeryReportTitle" /></h2>
+                        <p><Text tid="closedBakeryReportText" /></p>
+                        <p className="closed-bakery-report__email">ecrivez.moi@simonertel.net</p>
+                        <textarea
+                            className="closed-bakery-report__textarea"
+                            readOnly
+                            value={buildClosedBakeryReference(closedBakeryReport)}
+                        />
                     </div>
                 </div>
             }
@@ -490,7 +534,13 @@ const Map = () => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <ListMarkers list={pins} warning={setWarning} askedrank={rankselected} dictionary={dictionary} />
+                <ListMarkers
+                    list={pins}
+                    warning={setWarning}
+                    askedrank={rankselected}
+                    dictionary={dictionary}
+                    openClosedBakeryReport={openClosedBakeryReport}
+                />
                 {routing.userPosition && (
                     <CircleMarker
                         center={routing.userPosition}

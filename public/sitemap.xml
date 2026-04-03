@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <url>
+    <loc>https://bestbaguettes.200.work/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bestbaguettes.200.work/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://bestbaguettes.200.work/fr" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://bestbaguettes.200.work/en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://bestbaguettes.200.work/es" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://bestbaguettes.200.work/de" />
+    <xhtml:link rel="alternate" hreflang="sl" href="https://bestbaguettes.200.work/sl" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://bestbaguettes.200.work/it" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://bestbaguettes.200.work/uk" />
+  </url>
+  <url>
+    <loc>https://bestbaguettes.200.work/fr</loc>
+  </url>
+  <url>
+    <loc>https://bestbaguettes.200.work/en</loc>
+  </url>
+  <url>
+    <loc>https://bestbaguettes.200.work/es</loc>
+  </url>
+  <url>
+    <loc>https://bestbaguettes.200.work/de</loc>
+  </url>
+  <url>
+    <loc>https://bestbaguettes.200.work/sl</loc>
+  </url>
+  <url>
+    <loc>https://bestbaguettes.200.work/it</loc>
+  </url>
+  <url>
+    <loc>https://bestbaguettes.200.work/uk</loc>
+  </url>
+</urlset>

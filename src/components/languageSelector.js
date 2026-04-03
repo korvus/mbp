@@ -4,9 +4,10 @@ import { languageOptions } from '../datas/languages';
 import { PinContext } from '../store.js';
 
 export default function LanguageSelector() {
-  const { userLanguage, userLanguageChange } = useContext(PinContext);
+  const { userLanguage, userLanguageChange, getLanguageHref } = useContext(PinContext);
 
-  const handleLanguageChange = (selected) => {
+  const handleLanguageChange = (event, selected) => {
+    event.preventDefault();
     if (selected && selected !== userLanguage) {
       userLanguageChange(selected);
     }
@@ -15,13 +16,16 @@ export default function LanguageSelector() {
   return (
     <div className='langues'>
       {Object.entries(languageOptions).map(([id, label]) => (
-        <span
+        <a
           key={id}
+          href={getLanguageHref(id)}
           className={userLanguage === id ? 'active' : ''}
-          onClick={() => handleLanguageChange(id)}
+          hrefLang={id}
+          lang={id}
+          onClick={(event) => handleLanguageChange(event, id)}
         >
           {label}
-        </span>
+        </a>
       ))}
     </div>
   );

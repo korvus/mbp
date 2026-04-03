@@ -2,29 +2,51 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="shortcut icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/logo192.png" />
+    <link rel="shortcut icon" type="image/png" sizes="192x192" href="/logo192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <link rel="canonical" href="https://bestbaguettes.200.work/" />
+    <link rel="alternate" hreflang="x-default" href="https://bestbaguettes.200.work/" />
+    <link rel="alternate" hreflang="fr" href="https://bestbaguettes.200.work/fr" />
+    <link rel="alternate" hreflang="en" href="https://bestbaguettes.200.work/en" />
+    <link rel="alternate" hreflang="es" href="https://bestbaguettes.200.work/es" />
+    <link rel="alternate" hreflang="de" href="https://bestbaguettes.200.work/de" />
+    <link rel="alternate" hreflang="sl" href="https://bestbaguettes.200.work/sl" />
+    <link rel="alternate" hreflang="it" href="https://bestbaguettes.200.work/it" />
+    <link rel="alternate" hreflang="uk" href="https://bestbaguettes.200.work/uk" />
     <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Simone Ertel" />
+    <meta name="language" content="fr" />
     <meta name="description" content="Carte interactive des meilleures baguettes de Paris : laureats, finalistes et adresses par annee, disponible en sept langues." />
+    <meta name="keywords" content="baguette paris, meilleures baguettes paris, boulangeries paris, concours baguette paris, carte boulangeries paris" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Les meilleures baguettes de Paris" />
     <meta property="og:url" content="https://bestbaguettes.200.work/" />
     <meta property="og:title" content="Carte des meilleures baguettes de Paris" />
     <meta property="og:description" content="Decouvrez les boulangeries primees a Paris, laureats et finalistes du concours de la meilleure baguette, annee par annee." />
     <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:image" content="https://bestbaguettes.200.work/website.png" />
+    <meta property="og:image:secure_url" content="https://bestbaguettes.200.work/website.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Carte des meilleures baguettes de Paris" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Carte des meilleures baguettes de Paris" />
     <meta name="twitter:description" content="Les meilleures boulangeries de Paris, laureats du concours de la baguette, sur une carte interactive." />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <meta name="twitter:image" content="https://bestbaguettes.200.work/website.png" />
+    <meta name="twitter:image:alt" content="Carte des meilleures baguettes de Paris" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -45,11 +67,8 @@
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
       crossorigin=""
     ></script>
-    <title>Les meilleurs baguettes de Paris</title>
-    <meta property="og:image" content="%PUBLIC_URL%/logo512.png" />
-    <meta property="og:image:alt" content="Logo stylisé baguette" />
-    <meta name="twitter:image" content="%PUBLIC_URL%/logo512.png" />
-    <script type="application/ld+json">
+    <title>Les meilleures baguettes de Paris</title>
+    <script id="structured-data" type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Map",
@@ -65,8 +84,10 @@
         "hasMap": "https://bestbaguettes.200.work/",
         "image": {
           "@type": "ImageObject",
-          "url": "https://bestbaguettes.200.work/logo512.png",
-          "description": "Illustration promotionnelle des T-shirts baguette"
+          "url": "https://bestbaguettes.200.work/website.png",
+          "width": 1200,
+          "height": 630,
+          "description": "Apercu de la carte des meilleures baguettes de Paris"
         }
       }
     </script>

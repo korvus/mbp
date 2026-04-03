@@ -1,5 +1,7 @@
 {
     "titre":  "Mejores baguettes de Paris",
+    "seoTitle":  "Las mejores baguettes de Paris",
+    "seoDescription":  "Mapa interactivo de las mejores baguettes de Paris con ganadores, finalistas y direcciones por ano.",
     "tous":  "Todas",
     "About":  "Que es esto",
     "goalContent":  "Este sitio recopila los diez primeros clasificados y al ganador ",
@@ -38,5 +40,8 @@
     "walkRouteDistance":  "Distancia",
     "walkRouteDuration":  "Tiempo a pie",
     "walkRouteClear":  "Borrar ruta",
-    "walkRouteTooFar":  "Lo siento, vives demasiado lejos para disfrutar de una buena baguette."
+    "walkRouteTooFar":  "Lo siento, vives demasiado lejos para disfrutar de una buena baguette.",
+    "closedBakeryReportLink":  "Esta panaderia ya no existe",
+    "closedBakeryReportTitle":  "Informar de un cierre",
+    "closedBakeryReportText":  "Si tienes informacion sobre esta panaderia, enviame un correo a la direccion de abajo con las referencias siguientes."
 }

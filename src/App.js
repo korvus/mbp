@@ -2,6 +2,7 @@ import './style/App.css';
 import React from 'react';
 import Col from './components/menu.js';
 import Map from './components/map.js';
+import Seo from './components/seo.js';
 import { PinContextProvider } from './store';
 
 // Get coords : https://getlatlong.net/
@@ -11,6 +12,7 @@ import { PinContextProvider } from './store';
 function App() {
   return (
     <PinContextProvider>
+      <Seo />
       <Col />
       <Map />
     </PinContextProvider>

@@ -1,5 +1,7 @@
 {
     "titre":  "Meilleurs baguettes de Paris",
+    "seoTitle":  "Les meilleures baguettes de Paris",
+    "seoDescription":  "Carte interactive des meilleures baguettes de Paris : laureats, finalistes et adresses par annee.",
     "tous":  "Tous",
     "About":  "Qu\u0027est ce que c\u0027est",
     "goalContent":  "Ce site repertorie les 10 premiers laureats et le gagnant de chaque annee du ",
@@ -38,5 +40,8 @@
     "walkRouteDistance": "Distance",
     "walkRouteDuration": "Duree a pied",
     "walkRouteClear": "Effacer l\u0027itineraire",
-    "walkRouteTooFar": "Desole, vous habitez trop loin pour profiter d\u0027une bonne baguette !"
+    "walkRouteTooFar": "Desole, vous habitez trop loin pour profiter d\u0027une bonne baguette !",
+    "closedBakeryReportLink": "Cette boulangerie n\u0027existe plus",
+    "closedBakeryReportTitle": "Signaler une fermeture",
+    "closedBakeryReportText": "Si vous avez des informations sur cette boulangerie, envoyez-moi un email a l\u0027adresse ci-dessous avec les references suivantes."
 }

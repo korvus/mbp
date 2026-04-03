@@ -1,5 +1,7 @@
 {
     "titre":  "Najboljse bagete v Parizu",
+    "seoTitle":  "Najboljse bagete v Parizu",
+    "seoDescription":  "Interaktivni zemljevid najboljsih baget v Parizu z zmagovalci, finalisti in naslovi po letih.",
     "tous":  "Vse",
     "About":  "Kaj je to",
     "goalContent":  "Splet prikazuje prvih deset uvrscenih in zmagovalca ",
@@ -38,5 +40,8 @@
     "walkRouteDistance":  "Razdalja",
     "walkRouteDuration":  "Cas hoje",
     "walkRouteClear":  "Pocisti pot",
-    "walkRouteTooFar":  "Oprosti, stanujes predalec, da bi uzival v dobri bageti."
+    "walkRouteTooFar":  "Oprosti, stanujes predalec, da bi uzival v dobri bageti.",
+    "closedBakeryReportLink":  "Ta pekarna ne obstaja vec",
+    "closedBakeryReportTitle":  "Prijavi zaprtje",
+    "closedBakeryReportText":  "Ce imas informacije o tej pekarni, mi poslji e-posto na spodnji naslov z naslednjimi podatki."
 }
