@@ -4,9 +4,10 @@
             "name": "René Saint-Ouen",
             "adresse": "111 boulevard Haussmann 75008",
             "coords": [
-                48.875060,
-                2.316310
-            ]
+                48.87506,
+                2.31631
+            ],
+            "valid": false
         }
     ],
     "1995": [
@@ -14,8 +15,8 @@
             "name": "Maison Julien",
             "adresse": "75 rue Saint-Honoré 75001",
             "coords": [
-                48.861120,
-                2.344120
+                48.86112,
+                2.34412
             ]
         }
     ],
@@ -34,9 +35,10 @@
             "name": "René Saint-Ouen",
             "adresse": "111 boulevard Haussmann 75008",
             "coords": [
-                48.875060,
-                2.316310
-            ]
+                48.87506,
+                2.31631
+            ],
+            "valid": false
         }
     ],
     "1998": [
@@ -64,7 +66,7 @@
             "name": "Raoul Maeder",
             "adresse": "158 boulevard Berthier 75017",
             "coords": [
-                48.886780,
+                48.88678,
                 2.296109
             ]
         }
@@ -84,7 +86,7 @@
             "name": "Raoul Maeder",
             "adresse": "158 boulevard Berthier 75017",
             "coords": [
-                48.886780,
+                48.88678,
                 2.296109
             ]
         }
@@ -104,7 +106,7 @@
             "name": "La fournée d’Augustine",
             "adresse": "96 rue Raymond-Losserand 75014",
             "coords": [
-                48.832910,
+                48.83291,
                 2.315964
             ]
         }
@@ -156,7 +158,7 @@
             "adresse": "64 avenue Félix-Faure 75015",
             "coords": [
                 48.840418,
-                2.285920
+                2.28592
             ]
         }
     ],
@@ -230,7 +232,7 @@
             "adresse": "50 rue de l’Amiral Roussin 75015",
             "coords": [
                 48.843284,
-                2.299880
+                2.29988
             ]
         },
         {
@@ -264,7 +266,7 @@
             "name": "Les Saveurs du 20ème",
             "adresse": "120 rue de Bagnolet, 75020",
             "coords": [
-                48.860040,
+                48.86004,
                 2.404018
             ]
         },
@@ -304,7 +306,7 @@
             "name": "Philippe Marache",
             "adresse": "92 avenue de la République, 75011",
             "coords": [
-                48.863750,
+                48.86375,
                 2.381576
             ]
         },
@@ -338,7 +340,7 @@
             "name": "Raoul Maeder",
             "adresse": "158 boulevard Berthier 75017",
             "coords": [
-                48.886780,
+                48.88678,
                 2.296109
             ]
         },
@@ -346,7 +348,7 @@
             "name": "boulangerie AUDOU",
             "adresse": "10 rue de Chanzy – 75011",
             "coords": [
-                48.852430,
+                48.85243,
                 2.382964
             ]
         },
@@ -355,7 +357,7 @@
             "adresse": "110 rue de la Tour – 75116",
             "coords": [
                 48.862759,
-                2.276550
+                2.27655
             ]
         },
         {
@@ -394,7 +396,7 @@
             "name": "Benjamin TURQUIER",
             "adresse": "134 rue de Turenne – 75003",
             "coords": [
-                48.864660,
+                48.86466,
                 2.364911
             ]
         },
@@ -445,7 +447,7 @@
             "adresse": "104, cours de Vincennes 75012",
             "coords": [
                 48.846859,
-                2.408830
+                2.40883
             ]
         },
         {
@@ -534,7 +536,7 @@
             "name": "Benjamin TURQUIER",
             "adresse": "134 rue de Turenne – 75003",
             "coords": [
-                48.864660,
+                48.86466,
                 2.364911
             ]
         },
@@ -590,7 +592,7 @@
             "name": "M. Benoît CASTEL",
             "adresse": "39 rue des Vinaigriers – 75010",
             "coords": [
-                48.873110,
+                48.87311,
                 2.361628
             ]
         },
@@ -614,8 +616,8 @@
             "name": "M. Hamid MEKSEM",
             "adresse": "27 rue Campo Formio – 75013",
             "coords": [
-                48.835030,
-                2.359110
+                48.83503,
+                2.35911
             ]
         },
         {
@@ -656,7 +658,7 @@
             "name": "L’Académie du Pain",
             "adresse": "30 rue d’Alésia – 75014",
             "coords": [
-                48.827920,
+                48.82792,
                 2.330392
             ]
         },
@@ -723,7 +725,7 @@
             "adresse": "48 rue Madame 75006",
             "coords": [
                 48.848205,
-                2.331500
+                2.3315
             ]
         },
         {
@@ -747,7 +749,7 @@
             "adresse": "40 rue Lepic – 75018",
             "coords": [
                 48.886047,
-                2.334610
+                2.33461
             ]
         },
         {
@@ -794,7 +796,7 @@
             "name": "L’Académie du Pain",
             "adresse": "30 rue d’Alésia – 75014",
             "coords": [
-                48.827920,
+                48.82792,
                 2.330392
             ]
         }
@@ -822,7 +824,8 @@
             "coords": [
                 48.861958,
                 2.367355
-            ]
+            ],
+            "valid": false
         },
         {
             "name": "Sarl Gontran Cherrier",
@@ -959,7 +962,7 @@
             "adresse": "15, rue de Belleville 75019",
             "coords": [
                 48.872572,
-                2.378160
+                2.37816
             ]
         }
     ],
@@ -968,7 +971,7 @@
             "name": "Boulangerie Leroy Monti",
             "adresse": "203 avenue Daumesnil 75012",
             "coords": [
-                48.839090,
+                48.83909,
                 2.397672
             ]
         },
@@ -985,7 +988,7 @@
             "adresse": "4 bis, rue des Écoles 75005",
             "coords": [
                 48.847848,
-                2.351960
+                2.35196
             ]
         },
         {
@@ -1000,7 +1003,7 @@
             "name": "Tout Autour de Paris",
             "adresse": "134, rue de Turenne 75003",
             "coords": [
-                48.864660,
+                48.86466,
                 2.364911
             ]
         },
@@ -1051,7 +1054,7 @@
             "adresse": "13 rue Pierre Demours 75017",
             "coords": [
                 48.880548,
-                2.292820
+                2.29282
             ]
         },
         {
@@ -1132,40 +1135,40 @@
             "name": "Makram Akrout 'Les boulangers de Reuilly'",
             "adresse": "54 boulevard de Reuilly 75012",
             "coords": [
-                48.839380,
-                2.397150
+                48.83938,
+                2.39715
             ]
         },
         {
             "name": "Houcine Saidi 'Boulangerie de la place'",
             "adresse": "162, Boulevard Vincent Auriol 75013",
             "coords": [
-                48.832180,
-                2.359100
+                48.83218,
+                2.3591
             ]
         },
         {
             "name": "Jean-Philippe Lardeux 'Maison Lardeux'",
             "adresse": "67, rue Caulaincourt 75018",
             "coords": [
-                48.889620,
-                2.336170
+                48.88962,
+                2.33617
             ]
         },
         {
             "name": "Florian Bleas 'Aux délices de Vaugirard'",
             "adresse": "48 rue Madame 75006",
             "coords": [
-                48.848190,
-                2.331550
+                48.84819,
+                2.33155
             ]
         },
         {
             "name": "Khemoussi Mansour 'Aux délices de Glacière'",
             "adresse": "90, boulevard Auguste Blanqui 75013",
             "coords": [
-                48.830950,
-                2.345450
+                48.83095,
+                2.34545
             ]
         },
         {
@@ -1214,40 +1217,40 @@
             "name": "Damien Dedun 'Boulangerie-Pâtisserie Frédéric Comyn'",
             "adresse": "88, rue Cambronne, 75015",
             "coords": [
-                48.842280,
-                2.302800
+                48.84228,
+                2.3028
             ]
         },
         {
             "name": "Khemoussi Mansour « Aux Délices de Glacière »",
             "adresse": "90, boulevard Auguste Blanqui, 75013",
             "coords": [
-                48.830950,
-                2.345450
+                48.83095,
+                2.34545
             ]
         },
         {
             "name": "Tsuchun Chang « La Parisienne Saint-Domnique »",
             "adresse": "85, rue Saint-Dominique, 75007",
             "coords": [
-                48.859680,
-                2.307960
+                48.85968,
+                2.30796
             ]
         },
         {
             "name": "Filipe Lourenço Carpinteiro « Maison Lohezic »",
             "adresse": "143, rue de Courcelles 75017",
             "coords": [
-                48.883370,
-                2.298700
+                48.88337,
+                2.2987
             ]
         },
         {
             "name": "Youssef Mnakri « Boulangerie Tembely »",
             "adresse": "33, rue Myrha 75018",
             "coords": [
-                48.887070,
-                2.353640
+                48.88707,
+                2.35364
             ]
         },
         {
@@ -1312,32 +1315,32 @@
             "name": "Jocelyn Lohezic « Maison Lohezic »",
             "adresse": "143 rue de Courcelles, 75017",
             "coords": [
-                48.883370,
-                2.298700
+                48.88337,
+                2.2987
             ]
         },
         {
             "name": "Benjamin Turquier « Tout Autour du Pain »",
             "adresse": "134 rue de Turenne, 75003",
             "coords": [
-                48.864650,
-                2.364840
+                48.86465,
+                2.36484
             ]
         },
         {
             "name": "Florian Bleas « Aux Délices de Vaugirard »",
             "adresse": "48 rue Madame, 75006",
             "coords": [
-                48.848190,
-                2.331550
+                48.84819,
+                2.33155
             ]
         },
         {
             "name": "Frank Tombarel « Le Grenier de Félix »",
             "adresse": "64 avenue Félix Faure, 75015",
             "coords": [
-                48.840420,
-                2.285920
+                48.84042,
+                2.28592
             ]
         },
         {
@@ -1368,8 +1371,8 @@
             "name": "Kouni Elayeb « Le Délice de Bagnolet »",
             "adresse": "42 boulevard Mortier, 75020",
             "coords": [
-                48.867250,
-                2.409200
+                48.86725,
+                2.4092
             ]
         }
     ],
@@ -1534,6 +1537,88 @@
             "coords": [
                 48.89469837561706,
                 2.327615795202869
+            ]
+        }
+    ],
+    "2026": [
+        {
+            "name": "Le Fournil Didot",
+            "adresse": "103, rue Didot 75014",
+            "coords": [
+                48.8282322,
+                2.316116
+            ]
+        },
+        {
+            "name": "Boulangerie B&S Nation",
+            "adresse": "24, place de la Nation 75012",
+            "coords": [
+                48.8471974,
+                2.3963498
+            ]
+        },
+        {
+            "name": "L'Écrin Gourmand",
+            "adresse": "15, avenue du Docteur Arnold Netter 75012",
+            "coords": [
+                48.84224940215501,
+                2.4047118817068585
+            ]
+        },
+        {
+            "name": "Maison Daguet",
+            "adresse": "175, rue de la Convention 75015",
+            "coords": [
+                48.8380685,
+                2.2946253
+            ]
+        },
+        {
+            "name": "Boulangerie Laurent B.",
+            "adresse": "112, rue Saint-Dominique 75007",
+            "coords": [
+                48.858498,
+                2.302288
+            ]
+        },
+        {
+            "name": "Boulangerie Guyot Ferreira",
+            "adresse": "28, rue Monge 75005",
+            "coords": [
+                48.846759356244235,
+                2.3513765970497165
+            ]
+        },
+        {
+            "name": "Maison Leparq",
+            "adresse": "6, rue de Lourmel 75015",
+            "coords": [
+                48.850323,
+                2.291965
+            ]
+        },
+        {
+            "name": "Boulangerie Moderne Rabineau",
+            "adresse": "16, rue des Fossés Saint-Jacques 75005",
+            "coords": [
+                48.8455,
+                2.344194
+            ]
+        },
+        {
+            "name": "Aux Délices de Glacière",
+            "adresse": "90, boulevard Auguste-Blanqui 75013",
+            "coords": [
+                48.83108789799039,
+                2.3454800258844797
+            ]
+        },
+        {
+            "name": "Au Paradis du Gourmand",
+            "adresse": "156, rue Raymond Losserand 75014",
+            "coords": [
+                48.8306258,
+                2.3114766
             ]
         }
     ]

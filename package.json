@@ -16,6 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "admin": "node admin/server.js",
     "postbuild": "react-snap",
     "postinstall": "patch-package",
     "test": "react-scripts test",

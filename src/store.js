@@ -46,7 +46,7 @@ export const PinContextProvider = props => {
     const initialLocationState = getLocationState();
     const [pins, setPins] = useState(0);
     const [rankselected, setRankselected] = useState(0);
-    const [dm, setDm] = useState(false);
+    const [dm, setDm] = useState(true);
     const [warning, setWarning] = useState(false);
     const [closedBakeryReport, setClosedBakeryReport] = useState(null);
     const [routing, setRouting] = useState({
@@ -55,6 +55,12 @@ export const PinContextProvider = props => {
         tooFar: false,
         route: null,
         destination: null,
+        approximate: false,
+        fallbackDistance: null,
+        goldRoute: null,
+        goldDestination: null,
+        goldApproximate: false,
+        goldFallbackDistance: null,
         userPosition: null
     });
     const [userLanguage, setUserLanguage] = useState(initialLocationState.userLanguage);
