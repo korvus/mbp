@@ -34,6 +34,14 @@ jobs:
           INSEE_SIRENE_API_KEY: ${{ secrets.INSEE_SIRENE_API_KEY }}
           INSEE_BAGUETTE_IDBANK: ${{ secrets.INSEE_BAGUETTE_IDBANK }}
         run: |
+          if [ -z "${INSEE_SIRENE_API_KEY}" ]; then
+            echo "Missing GitHub secret: INSEE_SIRENE_API_KEY" >&2
+            exit 1
+          fi
+          if [ -z "${INSEE_BAGUETTE_IDBANK}" ]; then
+            echo "Missing GitHub secret: INSEE_BAGUETTE_IDBANK" >&2
+            exit 1
+          fi
           cat > build/passkey.txt <<EOF
           Sirene API Key: ${INSEE_SIRENE_API_KEY}
           BDM idBank: ${INSEE_BAGUETTE_IDBANK}

@@ -7,7 +7,6 @@ const DEFAULT_SIRENE_URL = 'https://api.insee.fr/api-sirene/3.11/siret';
 const DEFAULT_BDM_URL = 'https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/%s?lastNObservations=1';
 
 header('Content-Type: application/json; charset=utf-8');
-header('Cache-Control: public, max-age=3600, stale-while-revalidate=86400');
 
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') {
     respond([
@@ -16,12 +15,19 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') {
 }
 
 $config = loadConfig();
-
-respond([
+$payload = [
     'generatedAt' => gmdate(DATE_ATOM),
     'bakeryCount' => fetchParisBakeryCount($config),
     'baguettePrice' => fetchBaguettePrice($config),
-]);
+];
+
+if (($payload['bakeryCount']['status'] ?? null) === 'success' && ($payload['baguettePrice']['status'] ?? null) === 'success') {
+    header('Cache-Control: public, max-age=3600, stale-while-revalidate=86400');
+} else {
+    header('Cache-Control: no-store');
+}
+
+respond($payload);
 
 function respond(array $payload, int $statusCode = 200): void
 {
