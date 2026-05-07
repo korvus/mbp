@@ -29,6 +29,16 @@ jobs:
           npm ci
           npm run build
 
+      - name: Inject Insee secrets into build artifact
+        env:
+          INSEE_SIRENE_API_KEY: ${{ secrets.INSEE_SIRENE_API_KEY }}
+          INSEE_BAGUETTE_IDBANK: ${{ secrets.INSEE_BAGUETTE_IDBANK }}
+        run: |
+          cat > build/passkey.txt <<EOF
+          Sirene API Key: ${INSEE_SIRENE_API_KEY}
+          BDM idBank: ${INSEE_BAGUETTE_IDBANK}
+          EOF
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:

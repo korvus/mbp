@@ -1,6 +1,34 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import sources from '../datas/roots.json';
 import { PinContext, Text } from '../store';
+
+const DONATION_BUTTON_CONFIG = {
+    color: '#178040',
+    size: 'sm',
+    borderRadius: 'md',
+    recipientAddress: '0xbbb5052a25eEe56D0BEB0C7Ec995320F965d3137'
+};
+
+const DIVERS_LINKS = [
+    {
+        href: 'https://patefolle.200.work/',
+        imageSrc: '/divers-screen1.png',
+        titleKey: 'diversCardBreadTitle',
+        descriptionKey: 'diversCardBreadDescription'
+    },
+    {
+        href: 'https://boulangerieparisbio.200.work',
+        imageSrc: '/divers-screen2.png',
+        titleKey: 'diversCardBioTitle',
+        descriptionKey: 'diversCardBioDescription'
+    },
+    {
+        href: 'https://patisseriesparis.200.work/',
+        imageSrc: '/divers-screen3.png',
+        titleKey: 'diversCardPastryTitle',
+        descriptionKey: 'diversCardPastryDescription'
+    }
+];
 
 function ListSources() {
     const listDate = Object.keys(sources);
@@ -14,8 +42,82 @@ function ListSources() {
     ));
 }
 
-const Modalcontent = () => {
-    const { setDm } = useContext(PinContext);
+function DonationButtonEmbed({ dictionary }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const donationUrl = `https://fundhog.bunnylabs.dev/${encodeURIComponent(DONATION_BUTTON_CONFIG.recipientAddress)}`;
+
+    return (
+        <>
+            <div className="donationEmbed">
+                <button
+                    type="button"
+                    className={`donationEmbed__button donationEmbed__button--${DONATION_BUTTON_CONFIG.size} donationEmbed__button--radius-${DONATION_BUTTON_CONFIG.borderRadius}`}
+                    style={{ backgroundColor: DONATION_BUTTON_CONFIG.color }}
+                    onClick={() => setIsModalOpen(true)}
+                >
+                    {dictionary.donationCryptoButton || 'M\'offrir un cafe avec ETH'}
+                </button>
+            </div>
+            {isModalOpen && (
+                <div
+                    className="donationEmbed__overlay"
+                    onClick={() => setIsModalOpen(false)}
+                    role="presentation"
+                >
+                    <div
+                        className="donationEmbed__dialog"
+                        onClick={(event) => event.stopPropagation()}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label={dictionary.donationCryptoButton || 'M\'offrir un cafe avec ETH'}
+                    >
+                        <button
+                            type="button"
+                            className="donationEmbed__close"
+                            onClick={() => setIsModalOpen(false)}
+                            aria-label={dictionary.donationClose || 'Fermer la fenetre de don'}
+                        >
+                            ×
+                        </button>
+                        <iframe
+                            className="donationEmbed__iframe"
+                            src={donationUrl}
+                            title={dictionary.donationCryptoButton || 'M\'offrir un cafe avec ETH'}
+                            loading="lazy"
+                        />
+                    </div>
+                </div>
+            )}
+        </>
+    );
+}
+
+function BuyMeACoffeeEmbed({ dictionary }) {
+    return (
+        <div className="donationEmbed donationEmbed--bmc">
+            <a
+                className="donationEmbed__button donationEmbed__button--sm donationEmbed__button--radius-md donationEmbed__button--link"
+                href="https://buymeacoffee.com/ertelsimonu"
+                target="_blank"
+                rel="noreferrer"
+                style={{ backgroundColor: '#178040' }}
+            >
+                {dictionary.donationClassicButton || 'M\'offrir un cafe avec une monnaie classique'}
+            </a>
+        </div>
+    );
+}
+
+const DataTableIcon = () => (
+    <svg aria-hidden="true" viewBox="0 0 24 24">
+        <rect x="4" y="5" width="16" height="14" rx="1.8" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M4 10h16M9 5v14M15 5v14" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M7 13h.1M12 13h.1M17 13h.1M7 16h.1M12 16h.1M17 16h.1" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2.4" />
+    </svg>
+);
+
+const Modalcontent = ({ onRequestWalkRoute }) => {
+    const { setDm, setFactsOpen, dictionary } = useContext(PinContext);
 
     return (
         <div className="innerModal about-modal" onClick={(event) => event.stopPropagation()}>
@@ -25,6 +127,33 @@ const Modalcontent = () => {
                 <h2><Text tid="About" /></h2>
                 <p className="about-modal__lead"><Text tid="aboutIntroLead" /></p>
                 <p><Text tid="aboutIntroBody" /></p>
+                <div className="about-modal__route-cta">
+                    <button
+                        className="about-modal__route-button"
+                        onClick={() => {
+                            setDm(false);
+                            if (onRequestWalkRoute) {
+                                onRequestWalkRoute();
+                            }
+                        }}
+                        type="button"
+                    >
+                        {dictionary.aboutRouteCta || 'Trouver la boulangerie la plus proche a pied'}
+                    </button>
+                    <button
+                        className="about-modal__route-button about-modal__route-button--secondary"
+                        onClick={() => {
+                            setDm(false);
+                            setFactsOpen(true);
+                        }}
+                        type="button"
+                    >
+                        <span className="about-modal__button-icon">
+                            <DataTableIcon />
+                        </span>
+                        {dictionary.aboutFactsCta || 'La baguette en chiffres'}
+                    </button>
+                </div>
                 <p><Text tid="aboutIntroDetail" /></p>
                 <p><Text tid="aboutSubjective" /></p>
                 <p><Text tid="aboutCriteria" /></p>
@@ -81,11 +210,34 @@ const Modalcontent = () => {
             <section className="about-modal__section">
                 <h3><Text tid="divers" /></h3>
                 <p>
-                    <Text tid="aboutDiversIntro" />{' '}
-                    <a target="blank" rel="noreferrer" href="https://patefolle.200.work/">
-                        <Text tid="breadTool" />
-                    </a>.
+                    <Text tid="aboutDiversIntro" />
                 </p>
+                <div className="about-modal__promo-grid">
+                    {DIVERS_LINKS.map((item) => (
+                        <a
+                            key={item.href}
+                            className="about-modal__promo-card"
+                            href={item.href}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <img className="about-modal__promo-image" src={item.imageSrc} alt="" />
+                            <span className="about-modal__promo-copy">
+                                <strong><Text tid={item.titleKey} /></strong>
+                                <span><Text tid={item.descriptionKey} /></span>
+                            </span>
+                        </a>
+                    ))}
+                </div>
+                <div className="about-modal__donation">
+                    <p className="about-modal__donation-lead">
+                        <Text tid="donationLead" />
+                    </p>
+                    <div className="about-modal__donation-actions">
+                        <DonationButtonEmbed dictionary={dictionary} />
+                        <BuyMeACoffeeEmbed dictionary={dictionary} />
+                    </div>
+                </div>
             </section>
         </div>
     );

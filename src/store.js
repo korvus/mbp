@@ -10,7 +10,7 @@ import {
 
 export const PinContext = createContext(null);
 
-function isReactSnap() {
+export function isReactSnap() {
   return typeof navigator !== 'undefined' && navigator.userAgent === 'ReactSnap';
 }
 
@@ -49,6 +49,8 @@ export const PinContextProvider = props => {
     const [dm, setDm] = useState(true);
     const [warning, setWarning] = useState(false);
     const [closedBakeryReport, setClosedBakeryReport] = useState(null);
+    const [focusedBakeryKey, setFocusedBakeryKey] = useState(null);
+    const [factsOpen, setFactsOpen] = useState(false);
     const [routing, setRouting] = useState({
         loading: false,
         error: "",
@@ -100,6 +102,10 @@ export const PinContextProvider = props => {
       setWarning,
       closedBakeryReport,
       setClosedBakeryReport,
+      focusedBakeryKey,
+      setFocusedBakeryKey,
+      factsOpen,
+      setFactsOpen,
       routing,
       setRouting,
       pathname,

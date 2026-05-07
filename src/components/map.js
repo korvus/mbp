@@ -1,9 +1,9 @@
 import { MapContainer, TileLayer, useMap, useMapEvent, Marker, Popup, Polyline, CircleMarker } from 'react-leaflet';
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import L from 'leaflet';
 import coords from '../datas/datas.json';
 import { IconGold, IconSilver, IconDefault } from '../components/icon.js';
-import { PinContext, Text } from '../store';
+import { PinContext, Text, isReactSnap } from '../store';
 import Modalcontent from './modal.js';
 import Warningcontent from './warning.js';
 
@@ -15,6 +15,15 @@ const MAX_ROUTE_CANDIDATES = 3;
 const MAX_GOLD_ROUTE_CANDIDATES = 1;
 const routeCache = new Map();
 const ROUTE_FETCH_TIMEOUT_MS = 5000;
+const BAGUETTE_TRADITION_LENGTH_METERS = 0.55;
+const BAGUETTES_PRODUCED_PER_YEAR_FRANCE = 6000000000;
+const MINUTES_PER_YEAR = 365 * 24 * 60;
+const BAGUETTES_PRODUCED_PER_MINUTE_FRANCE = BAGUETTES_PRODUCED_PER_YEAR_FRANCE / MINUTES_PER_YEAR;
+const BAGUETTE_SOURCE_URL = 'https://www.info.gouv.fr/actualite/la-baguette-de-pain-patrimoine-culturel-immateriel-de-lhumanite';
+const BAGUETTE_CALORIES_SOURCE_URL = 'https://www.anses.fr/fr/content/la-table-de-composition-nutritionnelle-du-ciqual';
+const WALKING_CALORIES_SOURCE_URL = 'https://sites.google.com/site/compendiumofphysicalactivities/help/unit-conversions';
+const ASSUMED_WALKER_WEIGHT_KG = 70;
+const ASSUMED_WALKING_SPEED_M_PER_MIN = 80;
 
 function transformForGgl(value) {
     return `${value.replace(/\s+/g, '+')}+paris`;
@@ -147,6 +156,53 @@ function formatDistance(distance) {
     return `${(distance / 1000).toFixed(1)} km`;
 }
 
+function formatLocalizedNumber(value, language, options = {}) {
+    try {
+        return new Intl.NumberFormat(language || 'fr', options).format(value);
+    } catch (error) {
+        return new Intl.NumberFormat('fr', options).format(value);
+    }
+}
+
+function formatTraditionDistance(distance, language, dictionary) {
+    const traditionCount = distance / BAGUETTE_TRADITION_LENGTH_METERS;
+    const roundedCount = traditionCount >= 100 ? Math.round(traditionCount) : traditionCount;
+    const formattedCount = formatLocalizedNumber(
+        roundedCount,
+        language,
+        traditionCount >= 100
+            ? { maximumFractionDigits: 0 }
+            : { minimumFractionDigits: 1, maximumFractionDigits: 1 }
+    );
+
+    return `${formattedCount} ${dictionary.walkRouteBaguetteShort || 'bag.'}`;
+}
+
+function estimateWalkingCalories(distance, durationSeconds) {
+    const durationMinutes = durationSeconds && durationSeconds > 0
+        ? durationSeconds / 60
+        : distance / ASSUMED_WALKING_SPEED_M_PER_MIN;
+    const speedMetersPerMinute = durationMinutes > 0
+        ? distance / durationMinutes
+        : ASSUMED_WALKING_SPEED_M_PER_MIN;
+    const oxygenCost = (0.1 * speedMetersPerMinute) + 3.5;
+    const mets = oxygenCost / 3.5;
+    const calories = mets * ASSUMED_WALKER_WEIGHT_KG * (durationMinutes / 60);
+
+    return Math.max(0, calories);
+}
+
+function formatWalkingCalories(distance, durationSeconds, language, dictionary) {
+    const calories = estimateWalkingCalories(distance, durationSeconds);
+    const formattedCount = formatLocalizedNumber(
+        calories,
+        language,
+        { maximumFractionDigits: 0 }
+    );
+
+    return `${formattedCount} ${dictionary.walkRouteCaloriesShort || 'kcal'}`;
+}
+
 function formatDuration(duration) {
     const totalMinutes = Math.round(duration / 60);
     const hours = Math.floor(totalMinutes / 60);
@@ -159,7 +215,31 @@ function formatDuration(duration) {
     return `${hours} h ${minutes.toString().padStart(2, '0')}`;
 }
 
+function formatBaguetteProduction(duration, language, dictionary) {
+    const producedCount = (duration / 60) * BAGUETTES_PRODUCED_PER_MINUTE_FRANCE;
+    const formattedCount = formatLocalizedNumber(
+        producedCount,
+        language,
+        { maximumFractionDigits: 0 }
+    );
+
+    return `${formattedCount} ${dictionary.walkRouteBaguetteShort || 'bag.'}`;
+}
+
 function RouteMetricIcon({ type }) {
+    if (type === 'baguette') {
+        return (
+            <svg aria-hidden="true" viewBox="0 0 64 24">
+                <g transform="translate(32 12) rotate(-24) translate(-32 -12)">
+                    <rect x="4" y="4" width="56" height="16" rx="8" fill="#f0c25f" stroke="currentColor" strokeWidth="1.4" />
+                    <path d="M18 7.5c2.2 0 3.8 1.3 5 3.2 1 1.5 2.1 2.6 4.4 2.6" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.3" />
+                    <path d="M29.5 7.5c2.2 0 3.8 1.3 5 3.2 1 1.5 2.1 2.6 4.4 2.6" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.3" />
+                    <path d="M41 7.5c2.2 0 3.8 1.3 5 3.2 1 1.5 2.1 2.6 4.4 2.6" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.3" />
+                </g>
+            </svg>
+        );
+    }
+
     if (type === 'maps') {
         return (
             <svg aria-hidden="true" viewBox="0 0 5644.173 5644.173">
@@ -185,6 +265,15 @@ function RouteMetricIcon({ type }) {
         );
     }
 
+    if (type === 'calorie') {
+        return (
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M12.2 2.8c.4 2-.4 3.2-1.3 4.4-.9 1.1-1.9 2.3-1.9 4 0 2.2 1.5 3.8 3.7 3.8 2.4 0 4.2-1.8 4.2-4.5 0-2-1.1-3.8-2.6-5.7-.8-1-1.6-1.8-2.1-3.2z" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" />
+                <path d="M10.7 12.1c0 1.6 1 2.7 2.4 2.7 1.5 0 2.6-1.2 2.6-3 0-.9-.3-1.6-.9-2.5-.3.9-.9 1.4-1.4 1.8-.8.7-1.5 1.3-1.7 2.6-.5-.2-1-.8-1-1.6z" fill="currentColor" opacity="0.28" />
+            </svg>
+        );
+    }
+
     return (
         <svg aria-hidden="true" viewBox="0 0 24 24">
             <circle cx="12" cy="4.75" r="2.25" fill="currentColor" />
@@ -197,15 +286,230 @@ function RouteMetricIcon({ type }) {
     );
 }
 
+function RouteMetric({ type, primary, secondaryParts = [] }) {
+    const { dictionary } = useContext(PinContext);
+    const hasSecondary = secondaryParts.length > 0;
+    const buttonRef = useRef(null);
+    const tooltipRef = useRef(null);
+    const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+    const [tooltipPlacement, setTooltipPlacement] = useState('right');
+    const [tooltipVerticalPlacement, setTooltipVerticalPlacement] = useState('above');
+    const [isMobileTooltip, setIsMobileTooltip] = useState(false);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') {
+            return undefined;
+        }
+
+        function updateViewportMode() {
+            setIsMobileTooltip(window.innerWidth <= 640);
+        }
+
+        updateViewportMode();
+        window.addEventListener('resize', updateViewportMode);
+
+        return () => window.removeEventListener('resize', updateViewportMode);
+    }, []);
+
+    useLayoutEffect(() => {
+        if (!isTooltipOpen || isMobileTooltip || typeof window === 'undefined' || !buttonRef.current) {
+            return undefined;
+        }
+
+        function updateTooltipPlacement() {
+            const buttonRect = buttonRef.current.getBoundingClientRect();
+            const tooltipRect = tooltipRef.current
+                ? tooltipRef.current.getBoundingClientRect()
+                : { width: Math.min(352, window.innerWidth - 32), height: 180 };
+            const tooltipWidth = tooltipRect.width;
+            const tooltipHeight = tooltipRect.height;
+            const viewportPadding = 16;
+            const leftEdgeIfAnchoredRight = buttonRect.right - tooltipWidth;
+            const rightEdgeIfAnchoredLeft = buttonRect.left + tooltipWidth;
+            const overflowIfAnchoredRight = Math.max(0, viewportPadding - leftEdgeIfAnchoredRight);
+            const overflowIfAnchoredLeft = Math.max(0, rightEdgeIfAnchoredLeft - (window.innerWidth - viewportPadding));
+            const topEdgeIfAbove = buttonRect.top - 4 - tooltipHeight;
+            const bottomEdgeIfBelow = buttonRect.bottom + 4 + tooltipHeight;
+            const overflowIfAbove = Math.max(0, viewportPadding - topEdgeIfAbove);
+            const overflowIfBelow = Math.max(0, bottomEdgeIfBelow - (window.innerHeight - viewportPadding));
+
+            setTooltipPlacement(overflowIfAnchoredRight <= overflowIfAnchoredLeft ? 'right' : 'left');
+            setTooltipVerticalPlacement(overflowIfAbove <= overflowIfBelow ? 'above' : 'below');
+        }
+
+        updateTooltipPlacement();
+        window.addEventListener('resize', updateTooltipPlacement);
+
+        return () => window.removeEventListener('resize', updateTooltipPlacement);
+    }, [isMobileTooltip, isTooltipOpen]);
+
+    useEffect(() => {
+        if (!isTooltipOpen || !isMobileTooltip || typeof document === 'undefined') {
+            return undefined;
+        }
+
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [isMobileTooltip, isTooltipOpen]);
+
+    function openTooltip() {
+        setIsTooltipOpen(true);
+    }
+
+    function closeTooltip() {
+        setIsTooltipOpen(false);
+    }
+
+    function toggleTooltip() {
+        setIsTooltipOpen((currentValue) => !currentValue);
+    }
+
+    return (
+        <span className="walk-routing__metric-group">
+            <span className={`walk-routing__metric${hasSecondary ? ' walk-routing__metric--split' : ''}`}>
+                <span className="walk-routing__metric-icon">
+                    <RouteMetricIcon type={type} />
+                </span>
+                <span className="walk-routing__metric-content">
+                    <span className="walk-routing__metric-part">{primary}</span>
+                    {hasSecondary && secondaryParts.map((secondaryPart, index) => (
+                        <Fragment key={`${type}-${secondaryPart.label}-${index}`}>
+                            <span aria-hidden="true" className="walk-routing__metric-divider" />
+                            <span className="walk-routing__metric-part walk-routing__metric-part--secondary">
+                                {secondaryPart.label}
+                                {secondaryPart.iconType && (
+                                    <span className={`walk-routing__metric-icon walk-routing__metric-icon--${secondaryPart.iconType}`}>
+                                        <RouteMetricIcon type={secondaryPart.iconType} />
+                                    </span>
+                                )}
+                            </span>
+                        </Fragment>
+                    ))}
+                </span>
+            </span>
+            {hasSecondary && (
+                <span
+                    className="walk-routing__metric-help"
+                    onMouseEnter={!isMobileTooltip ? openTooltip : undefined}
+                    onMouseLeave={!isMobileTooltip ? closeTooltip : undefined}
+                    onBlur={!isMobileTooltip ? closeTooltip : undefined}
+                    onFocus={!isMobileTooltip ? openTooltip : undefined}
+                >
+                    <button
+                        aria-label={
+                            type === 'distance'
+                                ? (dictionary.walkRouteDistanceInfoLabel || 'About baguette and calorie estimates')
+                                : (dictionary.walkRouteDurationInfoLabel || 'About baguette production estimate')
+                        }
+                        className="walk-routing__metric-help-button"
+                        onClick={toggleTooltip}
+                        ref={buttonRef}
+                        type="button"
+                    >
+                        ?
+                    </button>
+                    {isMobileTooltip && isTooltipOpen && (
+                        <span className="walk-routing__metric-help-modal" onClick={closeTooltip}>
+                            <span className="walk-routing__metric-help-modal-card" onClick={(event) => event.stopPropagation()}>
+                                <button
+                                    aria-label={dictionary.walkRouteInfoClose || 'Close'}
+                                    className="walk-routing__metric-help-modal-close"
+                                    onClick={closeTooltip}
+                                    type="button"
+                                >
+                                    ×
+                                </button>
+                                {type === 'distance' ? (
+                                    <span className="walk-routing__metric-help-text walk-routing__metric-help-text--split">
+                                        <span className="walk-routing__metric-help-paragraph walk-routing__metric-help-paragraph--baguette">
+                                            {dictionary.walkRouteDistanceInfoBaguette || 'The baguette number is the number of baguettes laid end to end to cover that distance. The calculation uses 1 baguette = 55 cm.'}
+                                        </span>
+                                        <span className="walk-routing__metric-help-paragraph walk-routing__metric-help-paragraph--calorie">
+                                            {dictionary.walkRouteDistanceInfoCalories || 'The calorie number is a very theoretical estimate of calories burned while walking this route. It assumes flat walking, a 70 kg adult, and the route pace when it is known, otherwise an average pace of about 4.8 km/h. As a rough reference, one traditional baguette of about 250 g is around 700 kcal.'}
+                                        </span>
+                                    </span>
+                                ) : (
+                                    <span className="walk-routing__metric-help-text">
+                                        {dictionary.walkRouteDurationInfo || 'Based on 6 billion baguettes produced each year in France, about 11,416 per minute. We multiply that rate by the walking time.'}
+                                    </span>
+                                )}
+                                {type === 'distance' && (
+                                    <span className="walk-routing__metric-help-links">
+                                        <a className="walk-routing__metric-help-link" href={BAGUETTE_CALORIES_SOURCE_URL} rel="noreferrer" target="_blank">
+                                            {dictionary.walkRouteDistanceInfoSourceBread || 'Baguette calories source'}
+                                        </a>
+                                        <a className="walk-routing__metric-help-link" href={WALKING_CALORIES_SOURCE_URL} rel="noreferrer" target="_blank">
+                                            {dictionary.walkRouteDistanceInfoSourceCalories || 'Walking calories formula'}
+                                        </a>
+                                    </span>
+                                )}
+                                {type !== 'distance' && (
+                                    <a className="walk-routing__metric-help-link" href={BAGUETTE_SOURCE_URL} rel="noreferrer" target="_blank">
+                                        {dictionary.walkRouteInfoSource || 'Government source'}
+                                    </a>
+                                )}
+                            </span>
+                        </span>
+                    )}
+                    {!isMobileTooltip && (
+                        <span
+                            className={`walk-routing__metric-help-tooltip walk-routing__metric-help-tooltip--${tooltipPlacement} walk-routing__metric-help-tooltip--${tooltipVerticalPlacement}${isTooltipOpen ? ' is-open' : ''}`}
+                            ref={tooltipRef}
+                            role="tooltip"
+                        >
+                                {type === 'distance' ? (
+                                    <span className="walk-routing__metric-help-text walk-routing__metric-help-text--split">
+                                        <span className="walk-routing__metric-help-paragraph walk-routing__metric-help-paragraph--baguette">
+                                            {dictionary.walkRouteDistanceInfoBaguette || 'The baguette number is the number of baguettes laid end to end to cover that distance. The calculation uses 1 baguette = 55 cm.'}
+                                        </span>
+                                        <span className="walk-routing__metric-help-paragraph walk-routing__metric-help-paragraph--calorie">
+                                            {dictionary.walkRouteDistanceInfoCalories || 'The calorie number is a very theoretical estimate of calories burned while walking this route. It assumes flat walking, a 70 kg adult, and the route pace when it is known, otherwise an average pace of about 4.8 km/h. As a rough reference, one traditional baguette of about 250 g is around 700 kcal.'}
+                                        </span>
+                                    </span>
+                                ) : (
+                                    <span className="walk-routing__metric-help-text">
+                                        {dictionary.walkRouteDurationInfo || 'Based on 6 billion baguettes produced each year in France, about 11,416 per minute. We multiply that rate by the walking time.'}
+                                    </span>
+                                )}
+                                {type === 'distance' && (
+                                    <span className="walk-routing__metric-help-links">
+                                        <a className="walk-routing__metric-help-link" href={BAGUETTE_CALORIES_SOURCE_URL} rel="noreferrer" target="_blank">
+                                            {dictionary.walkRouteDistanceInfoSourceBread || 'Baguette calories source'}
+                                        </a>
+                                        <a className="walk-routing__metric-help-link" href={WALKING_CALORIES_SOURCE_URL} rel="noreferrer" target="_blank">
+                                            {dictionary.walkRouteDistanceInfoSourceCalories || 'Walking calories formula'}
+                                        </a>
+                                    </span>
+                                )}
+                                {type !== 'distance' && (
+                                    <a className="walk-routing__metric-help-link" href={BAGUETTE_SOURCE_URL} rel="noreferrer" target="_blank">
+                                        {dictionary.walkRouteInfoSource || 'Government source'}
+                                    </a>
+                                )}
+	                    </span>
+                    )}
+                </span>
+            )}
+        </span>
+    );
+}
+
 function RouteCard({
     title,
     name,
     address,
     distance,
+    distanceSecondaryParts,
     duration,
+    durationSecondary,
     approximate,
     approximateLabel,
     mapsDirectionUrl,
+    mapsLabel,
     accentClassName = ''
 }) {
     return (
@@ -214,19 +518,9 @@ function RouteCard({
             <p className="walk-routing__name">{name}</p>
             <p className="walk-routing__address">{address}</p>
             <div className="walk-routing__metrics">
-                <span className="walk-routing__metric">
-                    <span className="walk-routing__metric-icon">
-                        <RouteMetricIcon type="distance" />
-                    </span>
-                    {distance}
-                </span>
+                <RouteMetric primary={distance} secondaryParts={distanceSecondaryParts} type="distance" />
                 {duration && (
-                    <span className="walk-routing__metric">
-                        <span className="walk-routing__metric-icon">
-                            <RouteMetricIcon type="duration" />
-                        </span>
-                        {duration}
-                    </span>
+                    <RouteMetric primary={duration} secondaryParts={durationSecondary ? [{ label: durationSecondary, iconType: 'baguette' }] : []} type="duration" />
                 )}
             </div>
             {approximate && <p className="walk-routing__approximate">{approximateLabel}</p>}
@@ -235,7 +529,7 @@ function RouteCard({
                     <span className="walk-routing__metric-icon walk-routing__metric-icon--maps">
                         <RouteMetricIcon type="maps" />
                     </span>
-                    Google Maps
+                    {mapsLabel}
                 </a>
             )}
         </section>
@@ -374,7 +668,7 @@ async function getWalkingRoute(userPosition, bakery) {
     return result;
 }
 
-function constructJsx(bakeries, map, openClosedBakeryReport) {
+function constructJsx(bakeries, map, openClosedBakeryReport, markerRefs) {
     const jsxElements = [];
     let shouldBeOneAtLeast = 0;
     let index = 0;
@@ -402,6 +696,14 @@ function constructJsx(bakeries, map, openClosedBakeryReport) {
                 position={bakery.coords}
                 icon={icon}
                 opacity={bakery.obsolete === true ? 0.5 : 1}
+                ref={(marker) => {
+                    if (!marker) {
+                        delete markerRefs.current[bakeryKey];
+                        return;
+                    }
+
+                    markerRefs.current[bakeryKey] = marker;
+                }}
             >
                 <Popup>
                     {bakery.obsolete === true && <strong className="unexistant"><Text tid="anymore" /></strong>}
@@ -452,22 +754,56 @@ function FitRouteBounds({ route, userPosition, destination }) {
 
 function ListMarkers(props) {
     const map = useMap();
-    const setWarn = props.warning;
-    const bakeries = getBakeriesForSelection(props.list, props.askedrank, props.dictionary, true);
-    const bakeriesWithMapState = constructJsx(bakeries, map, props.openClosedBakeryReport);
+    const {
+        askedrank,
+        dictionary,
+        focusedBakeryKey,
+        list,
+        onBakeryFocusHandled,
+        openClosedBakeryReport,
+        warning
+    } = props;
+    const setWarn = warning;
+    const markerRefs = useRef({});
+    const bakeries = useMemo(
+        () => getBakeriesForSelection(list, askedrank, dictionary, true),
+        [askedrank, dictionary, list]
+    );
+    const bakeriesWithMapState = constructJsx(bakeries, map, openClosedBakeryReport, markerRefs);
 
     useEffect(() => {
         setWarn(bakeriesWithMapState[1] === 0);
     });
 
+    useEffect(() => {
+        if (!focusedBakeryKey) {
+            return;
+        }
+
+        const focusedBakery = bakeries[focusedBakeryKey];
+        const focusedMarker = markerRefs.current[focusedBakeryKey];
+
+        if (!focusedBakery || !focusedMarker) {
+            return;
+        }
+
+        map.flyTo(focusedBakery.coords, Math.max(map.getZoom(), 16), {
+            animate: true,
+            duration: 0.5
+        });
+        focusedMarker.openPopup();
+        warning(false);
+        onBakeryFocusHandled();
+    }, [bakeries, focusedBakeryKey, map, onBakeryFocusHandled, warning]);
+
     useMapEvent('drag', () => {
-        const updated = constructJsx(bakeries, map, props.openClosedBakeryReport);
-        props.warning(updated[1] === 0);
+        const updated = constructJsx(bakeries, map, openClosedBakeryReport, markerRefs);
+        warning(updated[1] === 0);
     });
 
     useMapEvent('zoomend', () => {
-        const updated = constructJsx(bakeries, map, props.openClosedBakeryReport);
-        props.warning(updated[1] === 0);
+        const updated = constructJsx(bakeries, map, openClosedBakeryReport, markerRefs);
+        warning(updated[1] === 0);
     });
 
     return (
@@ -478,7 +814,22 @@ function ListMarkers(props) {
 }
 
 const BakeryMap = () => {
-    const { pins, dm, setDm, warning, rankselected, setWarning, routing, setRouting, dictionary, closedBakeryReport, setClosedBakeryReport } = useContext(PinContext);
+    const {
+        pins,
+        dm,
+        setDm,
+        warning,
+        rankselected,
+        setWarning,
+        routing,
+        setRouting,
+        dictionary,
+        closedBakeryReport,
+        setClosedBakeryReport,
+        focusedBakeryKey,
+        setFocusedBakeryKey,
+        userLanguage
+    } = useContext(PinContext);
 
     const routePoints = routing.route
         ? routing.route.geometry.coordinates.map(([lng, lat]) => [lat, lng])
@@ -486,6 +837,7 @@ const BakeryMap = () => {
     const goldRoutePoints = routing.goldRoute
         ? routing.goldRoute.geometry.coordinates.map(([lng, lat]) => [lat, lng])
         : [];
+    const shouldRenderTileLayer = !isReactSnap();
     const shouldCompareGoldRoute = rankselected === 0 || rankselected === 1;
     const showGoldRoute = Boolean(
         shouldCompareGoldRoute
@@ -718,7 +1070,7 @@ const BakeryMap = () => {
         <div className="App">
             {dm === true &&
                 <div className={"modal"} onClick={() => setDm(false)}>
-                    <Modalcontent />
+                    <Modalcontent onRequestWalkRoute={handleWalkRoute} />
                 </div>
             }
             {routing.tooFar === true &&
@@ -780,10 +1132,31 @@ const BakeryMap = () => {
                                         name={routing.destination.name}
                                         address={routing.destination.adresse}
                                         distance={formatDistance(routing.route ? routing.route.distance : routing.fallbackDistance)}
+                                        distanceSecondaryParts={[
+                                            {
+                                                label: formatTraditionDistance(
+                                                    routing.route ? routing.route.distance : routing.fallbackDistance,
+                                                    userLanguage,
+                                                    dictionary
+                                                ),
+                                                iconType: 'baguette'
+                                            },
+                                            {
+                                                label: formatWalkingCalories(
+                                                    routing.route ? routing.route.distance : routing.fallbackDistance,
+                                                    routing.route ? routing.route.duration : null,
+                                                    userLanguage,
+                                                    dictionary
+                                                ),
+                                                iconType: 'calorie'
+                                            }
+                                        ]}
                                         duration={routing.route ? formatDuration(routing.route.duration) : ''}
+                                        durationSecondary={routing.route ? formatBaguetteProduction(routing.route.duration, userLanguage, dictionary) : ''}
                                         approximate={routing.approximate}
                                         approximateLabel={dictionary.walkRouteApproximate || 'Itineraire indisponible, distance approximate a vol d\'oiseau.'}
                                         mapsDirectionUrl={mapsDirectionUrl}
+                                        mapsLabel={dictionary.walkRouteOpen || 'Open in Google Maps'}
                                     />
                                     {routing.goldDestination && (
                                         <RouteCard
@@ -791,10 +1164,31 @@ const BakeryMap = () => {
                                             name={routing.goldDestination.name}
                                             address={routing.goldDestination.adresse}
                                             distance={formatDistance(routing.goldRoute ? routing.goldRoute.distance : routing.goldFallbackDistance)}
+                                            distanceSecondaryParts={[
+                                                {
+                                                    label: formatTraditionDistance(
+                                                        routing.goldRoute ? routing.goldRoute.distance : routing.goldFallbackDistance,
+                                                        userLanguage,
+                                                        dictionary
+                                                    ),
+                                                    iconType: 'baguette'
+                                                },
+                                                {
+                                                    label: formatWalkingCalories(
+                                                        routing.goldRoute ? routing.goldRoute.distance : routing.goldFallbackDistance,
+                                                        routing.goldRoute ? routing.goldRoute.duration : null,
+                                                        userLanguage,
+                                                        dictionary
+                                                    ),
+                                                    iconType: 'calorie'
+                                                }
+                                            ]}
                                             duration={routing.goldRoute ? formatDuration(routing.goldRoute.duration) : ''}
+                                            durationSecondary={routing.goldRoute ? formatBaguetteProduction(routing.goldRoute.duration, userLanguage, dictionary) : ''}
                                             approximate={routing.goldApproximate}
                                             approximateLabel={dictionary.walkRouteApproximate || 'Itineraire indisponible, distance approximate a vol d\'oiseau.'}
                                             mapsDirectionUrl={goldMapsDirectionUrl}
+                                            mapsLabel={dictionary.walkRouteOpen || 'Open in Google Maps'}
                                             accentClassName="walk-routing__card--gold"
                                         />
                                     )}
@@ -817,15 +1211,19 @@ const BakeryMap = () => {
                 scrollWheelZoom={false}
                 tap={false}
             >
-                <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
+                {shouldRenderTileLayer && (
+                    <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                )}
                 <ListMarkers
                     list={pins}
                     warning={setWarning}
                     askedrank={rankselected}
                     dictionary={dictionary}
+                    focusedBakeryKey={focusedBakeryKey}
+                    onBakeryFocusHandled={() => setFocusedBakeryKey(null)}
                     openClosedBakeryReport={openClosedBakeryReport}
                 />
                 {routing.userPosition && (

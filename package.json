@@ -16,7 +16,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:local": "react-scripts build",
+    "serve:php": "php -S 127.0.0.1:8080 -t build",
     "admin": "node admin/server.js",
+    "preview": "npm run build && node scripts/preview.js",
+    "preview:local": "npm run build:local && node scripts/preview.js",
     "postbuild": "react-snap",
     "postinstall": "patch-package",
     "test": "react-scripts test",

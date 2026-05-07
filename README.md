@@ -52,3 +52,83 @@ Da die Auswahl aller Top-Bäckereien in Paris ein enormer Aufwand ist, stützte 
 
 ## Contact / Contacto / Kontakt
 [ecrivez.moi@simonertel.net](mailto:ecrivez.moi@simonertel.net)
+
+## Technique
+### Test local rapide
+`npm start` lance seulement le front React. Cela suffit pour travailler sur l'interface, mais pas pour tester l'endpoint PHP `api/insee.php`.
+
+Dans ce mode:
+- le site tourne sur le serveur de dev de React
+- le PHP n'est pas execute
+- les tuiles live Insee de la modale "Quelques chiffres" resteront en erreur ou en attente
+
+### Test local complet avec PHP
+XAMPP n'est pas obligatoire. Le plus simple est d'utiliser le serveur PHP integre.
+
+1. Creer un fichier `passkey.txt` a la racine du projet avec ce format:
+
+```txt
+Sirene API Key: VOTRE_CLE_SIRENE
+BDM idBank: 000442423
+```
+
+2. Installer les dependances si besoin:
+
+```bash
+npm ci
+```
+
+3. Lancer la preview complete:
+
+```bash
+npm run preview
+```
+
+Si vous voulez une preview locale plus legere, sans le bruit de `react-snap`, utilisez plutot:
+
+```bash
+npm run preview:local
+```
+
+4. Ouvrir ensuite:
+
+```txt
+http://127.0.0.1:8080
+```
+
+Dans ce mode:
+- le build est regenere automatiquement au debut de la commande
+- le front compile est servi depuis `build/`
+- `api/insee.php` est bien execute
+- les appels vers Sirene et BDM peuvent etre verifies en conditions proches de la prod
+- l'admin locale est aussi lancee sur `http://127.0.0.1:4310`
+- `npm run preview` lance aussi `react-snap`, ce qui peut produire des warnings non bloquants sur les pages `404.html`
+- `npm run preview:local` evite cette etape et convient mieux pour tester rapidement les donnees live
+
+### Quand utiliser quelle commande ?
+- `npm start` : dev front rapide avec hot reload, sans PHP
+- `npm run admin` : admin locale seule, si vous ne travaillez que sur les donnees
+- `npm run preview` : preview complete proche de la prod, avec build + PHP + admin
+- `npm run preview:local` : preview locale avec build + PHP + admin, sans `react-snap`
+
+### XAMPP
+XAMPP reste possible si vous preferez Apache, mais ce n'est pas necessaire pour ce projet.
+Le serveur PHP integre suffit pour tester:
+- le front compile
+- l'endpoint PHP
+- les appels Insee
+
+### Secrets et production
+En production, les secrets ne sont pas versionnes.
+La GitHub Action de deploiement:
+- build le site
+- cree `build/passkey.txt` a partir des secrets GitHub
+- deploye ensuite le contenu de `build/` par FTP
+
+Secrets attendus par le workflow:
+- `INSEE_SIRENE_API_KEY`
+- `INSEE_BAGUETTE_IDBANK`
+
+Valeurs attendues:
+- `INSEE_SIRENE_API_KEY` = la cle API publique Sirene
+- `INSEE_BAGUETTE_IDBANK` = un idBank BDM, par exemple `000442423` pour la serie mensuelle "Pain baguette (1 kg)"
