@@ -426,10 +426,10 @@ function RouteMetric({ type, primary, secondaryParts = [] }) {
                                 {type === 'distance' ? (
                                     <span className="walk-routing__metric-help-text walk-routing__metric-help-text--split">
                                         <span className="walk-routing__metric-help-paragraph walk-routing__metric-help-paragraph--baguette">
-                                            {dictionary.walkRouteDistanceInfoBaguette || 'The baguette number is the number of baguettes laid end to end to cover that distance. The calculation uses 1 baguette = 55 cm.'}
+                                            {dictionary.walkRouteDistanceInfoBaguette || 'The baguette number is the number of baguettes laid end to end to cover that distance. The calculation uses 1 baguette = 55cm.'}
                                         </span>
                                         <span className="walk-routing__metric-help-paragraph walk-routing__metric-help-paragraph--calorie">
-                                            {dictionary.walkRouteDistanceInfoCalories || 'The calorie number is a very theoretical estimate of calories burned while walking this route. It assumes flat walking, a 70 kg adult, and the route pace when it is known, otherwise an average pace of about 4.8 km/h. As a rough reference, one traditional baguette of about 250 g is around 700 kcal.'}
+                                            {dictionary.walkRouteDistanceInfoCalories || 'The calorie number is a very theoretical estimate of calories burned while walking this route. It assumes flat walking, a 70kg adult, and the route pace when it is known, otherwise an average pace of about 4.8km/h. As a rough reference, one traditional baguette of about 250g is around 700kcal.'}
                                         </span>
                                     </span>
                                 ) : (
@@ -464,10 +464,10 @@ function RouteMetric({ type, primary, secondaryParts = [] }) {
                                 {type === 'distance' ? (
                                     <span className="walk-routing__metric-help-text walk-routing__metric-help-text--split">
                                         <span className="walk-routing__metric-help-paragraph walk-routing__metric-help-paragraph--baguette">
-                                            {dictionary.walkRouteDistanceInfoBaguette || 'The baguette number is the number of baguettes laid end to end to cover that distance. The calculation uses 1 baguette = 55 cm.'}
+                                            {dictionary.walkRouteDistanceInfoBaguette || 'The baguette number is the number of baguettes laid end to end to cover that distance. The calculation uses 1 baguette = 55cm.'}
                                         </span>
                                         <span className="walk-routing__metric-help-paragraph walk-routing__metric-help-paragraph--calorie">
-                                            {dictionary.walkRouteDistanceInfoCalories || 'The calorie number is a very theoretical estimate of calories burned while walking this route. It assumes flat walking, a 70 kg adult, and the route pace when it is known, otherwise an average pace of about 4.8 km/h. As a rough reference, one traditional baguette of about 250 g is around 700 kcal.'}
+                                            {dictionary.walkRouteDistanceInfoCalories || 'The calorie number is a very theoretical estimate of calories burned while walking this route. It assumes flat walking, a 70kg adult, and the route pace when it is known, otherwise an average pace of about 4.8km/h. As a rough reference, one traditional baguette of about 250g is around 700kcal.'}
                                         </span>
                                     </span>
                                 ) : (

@@ -1398,9 +1398,15 @@ a {
 
 @media screen and (orientation: portrait) {
   .modal {
-    inset: 1rem;
-    padding: 1.6rem 1.4rem;
-    border-radius: 18px;
+    inset: 0;
+    padding: 0;
+  }
+
+  .modal .innerModal {
+    width: 100%;
+    max-width: none;
+    max-height: 100%;
+    border-radius: 0;
   }
 
   .about-modal h2 {

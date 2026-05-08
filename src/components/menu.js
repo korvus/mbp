@@ -307,6 +307,7 @@ const FactsModal = ({ liveFacts, onClose, onSelectBakery }) => {
   const yearlyBaguetteEiffelTowers = yearlyBaguetteWeightTonnes / EIFFEL_TOWER_WEIGHT_TONNES;
   const yearlyBaguetteBlueWhales = yearlyBaguetteWeightTonnes / BLUE_WHALE_WEIGHT_TONNES;
   const yearlyBaguetteVolumeM3 = (BAGUETTES_PRODUCED_PER_YEAR_FRANCE * BAGUETTE_VOLUME_LITERS) / 1000;
+  const roundedYearlyBaguetteVolumeM3 = Math.round(yearlyBaguetteVolumeM3 / 100000) * 100000;
   const yearlyBaguetteKhufuPyramids = yearlyBaguetteVolumeM3 / KHUFU_PYRAMID_VOLUME_M3;
   const facts = useMemo(() => ([
     {
@@ -353,9 +354,9 @@ const FactsModal = ({ liveFacts, onClose, onSelectBakery }) => {
     {
       size: 'square',
       tone: 'sand',
-      value: '50 - 55 cm',
+      value: '50-55cm',
       label: dictionary.factsRulesLabel || 'Recent format',
-      body: dictionary.factsRulesBody || 'Recent editions mention baguettes around 50 to 55 cm and 250 to 270 g.'
+      body: dictionary.factsRulesBody || 'Recent editions mention baguettes around 50 to 55cm and 250 to 270g.'
     },
     {
       size: 'wide',
@@ -367,9 +368,9 @@ const FactsModal = ({ liveFacts, onClose, onSelectBakery }) => {
     {
       size: 'wide',
       tone: 'stone',
-      value: `${integerFormatter.format(BAGUETTE_CALORIES)} kcal`,
+      value: `${integerFormatter.format(BAGUETTE_CALORIES)}kcal`,
       label: dictionary.factsCaloriesLabel || 'Calories in one baguette',
-      body: dictionary.factsCaloriesBody || 'A traditional baguette of about 250 g lands around 700 kcal as a rough reference.'
+      body: dictionary.factsCaloriesBody || 'A traditional baguette of about 250g lands around 700kcal as a rough reference.'
     }
   ]), [dictionary, integerFormatter, liveFacts, priceFormatter]);
 
@@ -445,9 +446,9 @@ const FactsModal = ({ liveFacts, onClose, onSelectBakery }) => {
           <p><Text tid="factsWeightIntro" /></p>
           <div className="facts-modal__weight-grid">
             <article className="facts-modal__card">
-              <strong className="facts-modal__value">{integerFormatter.format(BAGUETTE_WEIGHT_GRAMS)} g</strong>
+              <strong className="facts-modal__value">{integerFormatter.format(BAGUETTE_WEIGHT_GRAMS)}g</strong>
               <span className="facts-modal__label"><Text tid="factsWeightLabel" /></span>
-              <p className="facts-modal__body">{renderFactBody(dictionary.factsWeightBody || 'For the joke, the converter assumes one baguette weighs about **250 g**.')}</p>
+              <p className="facts-modal__body">{renderFactBody(dictionary.factsWeightBody || 'For the joke, the converter assumes one baguette weighs about **250g**.')}</p>
             </article>
             <article className="facts-modal__card facts-modal__converter">
               <label className="facts-modal__converter-label" htmlFor="baguette-converter">
@@ -519,7 +520,7 @@ const FactsModal = ({ liveFacts, onClose, onSelectBakery }) => {
             <article className="facts-modal__card facts-modal__card--wide facts-modal__card--tone-wheat">
               <span className="facts-modal__label"><Text tid="factsScaleVolumeLabel" /></span>
               <strong className="facts-modal__value">
-                {formatter.format(yearlyBaguetteVolumeM3 / 1000000)} M m<sup>3</sup>
+                {integerFormatter.format(roundedYearlyBaguetteVolumeM3)}m<sup>3</sup>
               </strong>
               <p className="facts-modal__body">
                 <Text tid="factsScaleVolumeBodyStart" /> {integerFormatter.format(yearlyBaguetteKhufuPyramids)} <Text tid="factsScaleVolumeBodyEnd" />
