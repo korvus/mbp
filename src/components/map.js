@@ -830,6 +830,11 @@ const BakeryMap = () => {
         setFocusedBakeryKey,
         userLanguage
     } = useContext(PinContext);
+    const [isHydrated, setIsHydrated] = useState(false);
+
+    useEffect(() => {
+        setIsHydrated(true);
+    }, []);
 
     const routePoints = routing.route
         ? routing.route.geometry.coordinates.map(([lng, lat]) => [lat, lng])
@@ -1075,10 +1080,12 @@ const BakeryMap = () => {
     const goldMapsDirectionUrl = routing.goldDestination && routing.userPosition
         ? `https://www.google.com/maps/dir/?api=1&origin=${routing.userPosition[0]},${routing.userPosition[1]}&destination=${encodeURIComponent(routing.goldDestination.adresse)}&travelmode=walking`
         : null;
+    const shouldRenderInteractiveMap = isHydrated && !isReactSnap();
+    const shouldRenderInlineAbout = isReactSnap();
 
     return (
         <div className="App">
-            {dm === true &&
+            {!shouldRenderInlineAbout && dm === true &&
                 <div className={"modal"} onClick={() => setDm(false)}>
                     <Modalcontent onRequestWalkRoute={handleWalkRoute} />
                 </div>
@@ -1114,13 +1121,18 @@ const BakeryMap = () => {
                     <Warningcontent />
                 </div>
             }
-            <div
-                className={"about"}
-                title={"En savoir plus"}
-                onClick={() => setDm(!dm)}
-            >
-                <span>?</span>
-            </div>
+            {!shouldRenderInlineAbout && (
+                <div
+                    className={"about"}
+                    title={"En savoir plus"}
+                    onClick={() => setDm(!dm)}
+                >
+                    <span>?</span>
+                </div>
+            )}
+            {shouldRenderInlineAbout && (
+                <Modalcontent displayMode="inline" />
+            )}
             <div className="walk-routing">
                 <button
                     className="walk-routing__button"
@@ -1227,62 +1239,66 @@ const BakeryMap = () => {
                     </div>
                 )}
             </div>
-            <MapContainer
-                center={Paris}
-                zoom={13}
-                scrollWheelZoom={false}
-                tap={false}
-            >
-                {shouldRenderTileLayer && (
-                    <TileLayer
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                )}
-                <ListMarkers
-                    list={pins}
-                    warning={setWarning}
-                    askedrank={rankselected}
-                    dictionary={dictionary}
-                    focusedBakeryKey={focusedBakeryKey}
-                    onBakeryFocusHandled={() => setFocusedBakeryKey(null)}
-                    openClosedBakeryReport={openClosedBakeryReport}
-                />
-                {routing.userPosition && (
-                    <CircleMarker
-                        center={routing.userPosition}
-                        pathOptions={{ color: '#1b74e4', fillColor: '#1b74e4', fillOpacity: 0.95 }}
-                        radius={8}
-                    >
-                        <Popup>Vous etes ici</Popup>
-                    </CircleMarker>
-                )}
-                {routing.route && (
-                    <Polyline
-                        pathOptions={{ color: '#1b74e4', weight: 5, opacity: 0.85 }}
-                        positions={routePoints}
-                    />
-                )}
-                {showGoldRoute && (
-                    <Fragment>
-                        <Polyline
-                            pathOptions={{ color: '#5c4a00', weight: 8, opacity: 0.45, dashArray: '10 10' }}
-                            positions={goldRoutePoints}
+            {shouldRenderInteractiveMap ? (
+                <MapContainer
+                    center={Paris}
+                    zoom={13}
+                    scrollWheelZoom={false}
+                    tap={false}
+                >
+                    {shouldRenderTileLayer && (
+                        <TileLayer
+                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                        <Polyline
-                            pathOptions={{ color: '#ffeb3b', weight: 4, opacity: 0.98, dashArray: '10 10' }}
-                            positions={goldRoutePoints}
-                        />
-                    </Fragment>
-                )}
-                {routing.route && routing.userPosition && routing.destination && (
-                    <FitRouteBounds
-                        route={routing.route}
-                        userPosition={routing.userPosition}
-                        destination={routing.destination}
+                    )}
+                    <ListMarkers
+                        list={pins}
+                        warning={setWarning}
+                        askedrank={rankselected}
+                        dictionary={dictionary}
+                        focusedBakeryKey={focusedBakeryKey}
+                        onBakeryFocusHandled={() => setFocusedBakeryKey(null)}
+                        openClosedBakeryReport={openClosedBakeryReport}
                     />
-                )}
-            </MapContainer>
+                    {routing.userPosition && (
+                        <CircleMarker
+                            center={routing.userPosition}
+                            pathOptions={{ color: '#1b74e4', fillColor: '#1b74e4', fillOpacity: 0.95 }}
+                            radius={8}
+                        >
+                            <Popup>Vous etes ici</Popup>
+                        </CircleMarker>
+                    )}
+                    {routing.route && (
+                        <Polyline
+                            pathOptions={{ color: '#1b74e4', weight: 5, opacity: 0.85 }}
+                            positions={routePoints}
+                        />
+                    )}
+                    {showGoldRoute && (
+                        <Fragment>
+                            <Polyline
+                                pathOptions={{ color: '#5c4a00', weight: 8, opacity: 0.45, dashArray: '10 10' }}
+                                positions={goldRoutePoints}
+                            />
+                            <Polyline
+                                pathOptions={{ color: '#ffeb3b', weight: 4, opacity: 0.98, dashArray: '10 10' }}
+                                positions={goldRoutePoints}
+                            />
+                        </Fragment>
+                    )}
+                    {routing.route && routing.userPosition && routing.destination && (
+                        <FitRouteBounds
+                            route={routing.route}
+                            userPosition={routing.userPosition}
+                            destination={routing.destination}
+                        />
+                    )}
+                </MapContainer>
+            ) : (
+                <div className="map-prerender-placeholder" aria-hidden="true"></div>
+            )}
         </div>
     );
 };
