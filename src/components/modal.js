@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import boulangeries from '../datas/datas.json';
 import sources from '../datas/roots.json';
 import LanguageSelector from './languageSelector';
 import { PinContext, Text } from '../store';
@@ -30,6 +31,11 @@ const DIVERS_LINKS = [
         descriptionKey: 'diversCardPastryDescription'
     }
 ];
+
+const latestYear = Object.keys(boulangeries)
+    .map((year) => Number.parseInt(year, 10))
+    .filter((year) => Number.isFinite(year))
+    .sort((left, right) => right - left)[0];
 
 function ListSources() {
     const listDate = Object.keys(sources);
@@ -132,7 +138,7 @@ function renderInlineRichText(body) {
 }
 
 const Modalcontent = ({ onRequestWalkRoute }) => {
-    const { setDm, setFactsOpen, dictionary } = useContext(PinContext);
+    const { setDm, setFactsOpen, setPins, setRankselected, dictionary } = useContext(PinContext);
     const handleRouteButtonClick = () => {
         setDm(false);
         if (onRequestWalkRoute) {
@@ -152,6 +158,13 @@ const Modalcontent = ({ onRequestWalkRoute }) => {
         if (isMobileLayout) {
             handleFactsButtonClick();
         }
+    };
+    const handleLatestYearMapClick = () => {
+        if (latestYear) {
+            setPins(String(latestYear));
+        }
+        setRankselected(0);
+        setDm(false);
     };
 
     return (
@@ -213,10 +226,22 @@ const Modalcontent = ({ onRequestWalkRoute }) => {
                     </button>
                 </div>
                 <p>{renderInlineRichText(dictionary.aboutIntroDetail || '')}</p>
-                <p><Text tid="aboutSubjective" /></p>
-                <p><Text tid="aboutCriteria" /></p>
+                <div
+                    className="about-modal__inline-cta"
+                    style={{ '--about-laurel-image': "url('/lauriers-brown.svg')" }}
+                >
+                    <button
+                        className="about-modal__route-button about-modal__route-button--secondary"
+                        onClick={handleLatestYearMapClick}
+                        type="button"
+                    >
+                        {(dictionary.aboutLatestYearMapCtaPrefix || 'Afficher la carte des laureats de ')}
+                        {latestYear}
+                    </button>
+                </div>
+                <p>{renderInlineRichText(dictionary.aboutCriteria || '')}</p>
                 <p>
-                    <Text tid="goalContent" />{' '}
+                    {renderInlineRichText(dictionary.goalContent || '')}{' '}
                     <a target="blank" rel="noreferrer" href="https://fr.wikipedia.org/wiki/Concours_de_la_meilleure_baguette_de_Paris">
                         <Text tid="contestwikipedia" />
                     </a>,{' '}

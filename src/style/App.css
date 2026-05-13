@@ -543,6 +543,28 @@ a {
   margin: 1.2rem 0 1.4rem;
 }
 
+.about-modal__inline-cta {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 2.4rem 0 2.2rem;
+  padding: 1.8rem 0;
+}
+
+.about-modal__inline-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--about-laurel-image) center center / contain no-repeat;
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.about-modal__inline-cta .about-modal__route-button {
+  position: relative;
+  z-index: 1;
+}
+
 .about-modal__route-button {
   display: inline-flex;
   align-items: center;
@@ -1549,6 +1571,21 @@ a {
   .about-modal__route-button--secondary {
     background: rgba(125, 96, 85, 0.92);
     box-shadow: 0 10px 24px rgba(39, 28, 21, 0.18);
+  }
+
+  .about-modal__inline-cta .about-modal__route-button {
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  .about-modal__inline-cta {
+    margin: 1.8rem 0;
+    padding: 4.4rem 0;
+  }
+
+  .about-modal__inline-cta::before {
+    background-size: contain;
+    opacity: 0.2;
   }
 
   #root {
