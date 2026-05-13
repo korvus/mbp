@@ -55,12 +55,34 @@ Da die Auswahl aller Top-Bäckereien in Paris ein enormer Aufwand ist, stützte 
 
 ## Technique
 ### Test local rapide
-`npm start` lance seulement le front React. Cela suffit pour travailler sur l'interface, mais pas pour tester l'endpoint PHP `api/insee.php`.
+`npm start` lance le front React avec hot reload. Depuis que le projet declare un proxy vers `http://127.0.0.1:8080`, les appels a `/api/insee.php` fonctionneront aussi si le serveur PHP local tourne en parallele.
+
+Pour un vrai mode dev complet, utilisez deux terminaux:
+
+```bash
+npm run start:php
+```
+
+```bash
+npm start
+```
+
+Puis ouvrez:
+
+```txt
+http://127.0.0.1:3000
+```
 
 Dans ce mode:
-- le site tourne sur le serveur de dev de React
-- le PHP n'est pas execute
-- les tuiles live Insee de la modale "Quelques chiffres" resteront en erreur ou en attente
+- le site tourne sur le serveur de dev React avec hot reload
+- `/api/insee.php` est proxifie vers le serveur PHP local
+- les tuiles live Insee de la modale "Quelques chiffres" fonctionnent si vos cles sont presentes
+
+Si vous avez aussi besoin de l'admin locale, lancez en plus dans un troisieme terminal:
+
+```bash
+npm run admin
+```
 
 ### Test local complet avec PHP
 XAMPP n'est pas obligatoire. Le plus simple est d'utiliser le serveur PHP integre.
@@ -106,7 +128,8 @@ Dans ce mode:
 - `npm run preview:local` evite cette etape et convient mieux pour tester rapidement les donnees live
 
 ### Quand utiliser quelle commande ?
-- `npm start` : dev front rapide avec hot reload, sans PHP
+- `npm start` : dev front avec hot reload; a combiner avec `npm run start:php` si vous voulez les donnees live Insee
+- `npm run start:php` : serveur PHP local pour `public/api/insee.php`
 - `npm run admin` : admin locale seule, si vous ne travaillez que sur les donnees
 - `npm run preview` : preview complete proche de la prod, avec build + PHP + admin
 - `npm run preview:local` : preview locale avec build + PHP + admin, sans `react-snap`

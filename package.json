@@ -2,6 +2,7 @@
   "name": "mbp",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://127.0.0.1:8080",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -15,6 +16,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:php": "php -S 127.0.0.1:8080 -t public",
     "build": "react-scripts build",
     "build:local": "react-scripts build",
     "serve:php": "php -S 127.0.0.1:8080 -t build",

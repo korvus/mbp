@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import sources from '../datas/roots.json';
+import LanguageSelector from './languageSelector';
 import { PinContext, Text } from '../store';
 
 const DONATION_BUTTON_CONFIG = {
@@ -116,35 +117,92 @@ const DataTableIcon = () => (
     </svg>
 );
 
+function renderInlineRichText(body) {
+    if (typeof body !== 'string' || body.indexOf('**') === -1) {
+        return body;
+    }
+
+    return body.split(/(\*\*[^*]+\*\*)/g).filter(Boolean).map((part, index) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+            return <strong key={index}>{part.slice(2, -2)}</strong>;
+        }
+
+        return <React.Fragment key={index}>{part}</React.Fragment>;
+    });
+}
+
 const Modalcontent = ({ onRequestWalkRoute }) => {
     const { setDm, setFactsOpen, dictionary } = useContext(PinContext);
+    const handleRouteButtonClick = () => {
+        setDm(false);
+        if (onRequestWalkRoute) {
+            onRequestWalkRoute();
+        }
+    };
+    const handleFactsButtonClick = () => {
+        setDm(false);
+        setFactsOpen(true);
+    };
+    const handleMobileFactsCardClick = () => {
+        if (typeof window === 'undefined') {
+            return;
+        }
+
+        const isMobileLayout = window.innerWidth <= 768 || window.matchMedia('(orientation: portrait)').matches;
+        if (isMobileLayout) {
+            handleFactsButtonClick();
+        }
+    };
 
     return (
         <div className="innerModal about-modal" onClick={(event) => event.stopPropagation()}>
             <div title="Echap" onClick={() => setDm(false)} className="close"></div>
+            <div className="about-modal__languages">
+                <LanguageSelector />
+            </div>
             <div className="about-modal__hero">
-                <p className="about-modal__kicker"><Text tid="aboutKicker" /></p>
-                <h2><Text tid="About" /></h2>
+                <h2><Text tid="aboutKicker" /></h2>
                 <p className="about-modal__lead"><Text tid="aboutIntroLead" /></p>
-                <p><Text tid="aboutIntroBody" /></p>
-                <div className="about-modal__route-cta">
+                <div className="about-modal__route-cta about-modal__route-cta--desktop-primary">
                     <button
-                        className="about-modal__route-button"
-                        onClick={() => {
-                            setDm(false);
-                            if (onRequestWalkRoute) {
-                                onRequestWalkRoute();
-                            }
-                        }}
+                        className="about-modal__route-button about-modal__route-button--desktop-primary"
+                        onClick={handleRouteButtonClick}
                         type="button"
                     >
                         {dictionary.aboutRouteCta || 'Trouver la boulangerie la plus proche a pied'}
                     </button>
+                </div>
+                <div
+                    className="about-modal__mobile-route-action"
+                    style={{ '--mobile-route-image': "url('/mobile-screen-route.png')" }}
+                >
+                    <button
+                        className="about-modal__route-button about-modal__route-button--mobile-inline"
+                        onClick={handleRouteButtonClick}
+                        type="button"
+                    >
+                        {dictionary.aboutRouteMobileCta || 'Trouver la meilleure boulangerie la plus proche de chez vous'}
+                    </button>
+                </div>
+                <p>{renderInlineRichText(dictionary.aboutIntroBody || '')}</p>
+                <div
+                    className="about-modal__route-cta"
+                    style={{ '--about-facts-block-image': "url('/background-block-datas.png')" }}
+                    onClick={handleMobileFactsCardClick}
+                    onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            handleMobileFactsCardClick();
+                        }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                >
                     <button
                         className="about-modal__route-button about-modal__route-button--secondary"
-                        onClick={() => {
-                            setDm(false);
-                            setFactsOpen(true);
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            handleFactsButtonClick();
                         }}
                         type="button"
                     >
@@ -154,7 +212,7 @@ const Modalcontent = ({ onRequestWalkRoute }) => {
                         {dictionary.aboutFactsCta || 'La baguette en chiffres'}
                     </button>
                 </div>
-                <p><Text tid="aboutIntroDetail" /></p>
+                <p>{renderInlineRichText(dictionary.aboutIntroDetail || '')}</p>
                 <p><Text tid="aboutSubjective" /></p>
                 <p><Text tid="aboutCriteria" /></p>
                 <p>

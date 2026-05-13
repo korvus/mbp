@@ -839,6 +839,7 @@ const BakeryMap = () => {
         : [];
     const shouldRenderTileLayer = !isReactSnap();
     const shouldCompareGoldRoute = rankselected === 0 || rankselected === 1;
+    const [routingPanelCollapsed, setRoutingPanelCollapsed] = useState(false);
     const showGoldRoute = Boolean(
         shouldCompareGoldRoute
         &&
@@ -851,6 +852,7 @@ const BakeryMap = () => {
     );
 
     function clearWalkRoute() {
+        setRoutingPanelCollapsed(false);
         setRouting({
             loading: false,
             error: '',
@@ -878,6 +880,7 @@ const BakeryMap = () => {
             : [];
 
         if (bakeries.length === 0) {
+            setRoutingPanelCollapsed(false);
             setRouting({
                 loading: false,
                 error: 'walkRouteNoBakery',
@@ -896,6 +899,7 @@ const BakeryMap = () => {
         }
 
         if (!navigator.geolocation) {
+            setRoutingPanelCollapsed(false);
             setRouting({
                 loading: false,
                 error: 'walkRouteGeolocationError',
@@ -913,6 +917,7 @@ const BakeryMap = () => {
             return;
         }
 
+        setRoutingPanelCollapsed(false);
         setRouting({
             loading: true,
             error: '',
@@ -941,6 +946,7 @@ const BakeryMap = () => {
                 const best = bestOutcome.result;
 
                 if (!bestOutcome.approximate && best.route.duration > MAX_WALKING_DURATION_SECONDS) {
+                    setRoutingPanelCollapsed(false);
                     setRouting({
                         loading: false,
                         error: '',
@@ -973,6 +979,7 @@ const BakeryMap = () => {
                     bestGoldFallbackDistance = bestGoldOutcome && bestGoldOutcome.approximate ? bestGoldOutcome.result.approximateDistance : null;
                 }
 
+                setRoutingPanelCollapsed(false);
                 setRouting({
                     loading: false,
                     error: '',
@@ -988,6 +995,7 @@ const BakeryMap = () => {
                     userPosition: bestOutcome.approximate ? userPosition : best.snappedStart
                 });
             } catch (error) {
+                setRoutingPanelCollapsed(false);
                 setRouting({
                     loading: false,
                     error: error.message === 'routing_rate_limit' ? 'walkRouteRateLimit' : 'walkRouteError',
@@ -1004,6 +1012,7 @@ const BakeryMap = () => {
                 });
             }
         }, () => {
+            setRoutingPanelCollapsed(false);
             setRouting({
                 loading: false,
                 error: 'walkRouteGeolocationError',
@@ -1043,6 +1052,7 @@ const BakeryMap = () => {
     });
 
     useEffect(() => {
+        setRoutingPanelCollapsed(false);
         setRouting({
             loading: false,
             error: '',
@@ -1121,10 +1131,22 @@ const BakeryMap = () => {
                     <Text tid="walkRoute" />
                 </button>
                 {(routing.loading || routing.error || routing.destination || routing.goldDestination) && !routing.tooFar && (
-                    <div className="walk-routing__panel">
+                    <div className={`walk-routing__panel${routingPanelCollapsed ? ' walk-routing__panel--collapsed' : ''}`}>
+                        {!routing.loading && (routing.destination || routing.goldDestination || routing.error) && (
+                            <div className="walk-routing__panel-actions">
+                                <button
+                                    className="walk-routing__toggle"
+                                    onClick={() => setRoutingPanelCollapsed((current) => !current)}
+                                    type="button"
+                                    aria-expanded={!routingPanelCollapsed}
+                                >
+                                    <Text tid={routingPanelCollapsed ? 'walkRouteExpand' : 'walkRouteCollapse'} />
+                                </button>
+                            </div>
+                        )}
                         {routing.loading && <p><Text tid="walkRouteLoading" /></p>}
                         {!routing.loading && routing.error && <p><Text tid={routing.error} /></p>}
-                        {!routing.loading && routing.destination && (
+                        {!routing.loading && routing.destination && !routingPanelCollapsed && (
                             <Fragment>
                                 <div className="walk-routing__results">
                                     <RouteCard
