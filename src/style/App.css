@@ -482,8 +482,7 @@ a {
   cursor: pointer;
 }
 
-.modal .innerModal,
-.about-modal-shell {
+.modal .innerModal {
   position: relative;
   width: min(100%, 78rem);
   max-width: 78rem;
@@ -497,10 +496,6 @@ a {
   background: linear-gradient(180deg, rgba(255, 252, 247, 0.98), rgba(248, 242, 235, 0.98));
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
   font-size: 1.6rem;
-}
-
-.about-modal--inline {
-  margin: 0 auto 2rem;
 }
 
 .about-modal {
@@ -1390,14 +1385,6 @@ a {
   height: 100%;
 }
 
-.map-prerender-placeholder {
-  height: 100%;
-  background:
-    linear-gradient(180deg, rgba(241, 235, 222, 0.95) 0%, rgba(230, 224, 210, 0.95) 100%),
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 32%),
-    radial-gradient(circle at 78% 30%, rgba(255, 255, 255, 0.32) 0, rgba(255, 255, 255, 0) 28%);
-}
-
 .leaflet-div-icon {
   border: none;
   background-color: transparent;
@@ -1479,16 +1466,11 @@ a {
     padding: 0;
   }
 
-  .modal .innerModal,
-  .about-modal-shell {
+  .modal .innerModal {
     width: 100%;
     max-width: none;
     max-height: 100%;
     border-radius: 0;
-  }
-
-  .about-modal--inline {
-    margin-bottom: 0;
   }
 
   .about-modal h2 {

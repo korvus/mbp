@@ -137,21 +137,16 @@ function renderInlineRichText(body) {
     });
 }
 
-const Modalcontent = ({ onRequestWalkRoute, displayMode = 'modal' }) => {
+const Modalcontent = ({ onRequestWalkRoute }) => {
     const { setDm, setFactsOpen, setPins, setRankselected, dictionary } = useContext(PinContext);
-    const isInline = displayMode === 'inline';
     const handleRouteButtonClick = () => {
-        if (!isInline) {
-            setDm(false);
-        }
+        setDm(false);
         if (onRequestWalkRoute) {
             onRequestWalkRoute();
         }
     };
     const handleFactsButtonClick = () => {
-        if (!isInline) {
-            setDm(false);
-        }
+        setDm(false);
         setFactsOpen(true);
     };
     const handleMobileFactsCardClick = () => {
@@ -169,21 +164,12 @@ const Modalcontent = ({ onRequestWalkRoute, displayMode = 'modal' }) => {
             setPins(String(latestYear));
         }
         setRankselected(0);
-        if (!isInline) {
-            setDm(false);
-        }
+        setDm(false);
     };
 
     return (
-        <div
-            className={`about-modal-shell about-modal${isInline ? ' about-modal--inline' : ' innerModal'}`}
-            onClick={(event) => {
-                if (!isInline) {
-                    event.stopPropagation();
-                }
-            }}
-        >
-            {!isInline && <div title="Echap" onClick={() => setDm(false)} className="close"></div>}
+        <div className="innerModal about-modal" onClick={(event) => event.stopPropagation()}>
+            <div title="Echap" onClick={() => setDm(false)} className="close"></div>
             <div className="about-modal__languages">
                 <LanguageSelector />
             </div>
